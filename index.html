@@ -16,6 +16,7 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="i18n.js"></script>
 </head>
 
 <body>
@@ -63,25 +64,34 @@
                 <div class="nav-dropdown" id="brandDropdown">
                     <button class="nav-link nav-dropdown__toggle" id="brandDropdownToggle" type="button"
                         aria-expanded="false" aria-controls="brandDropdownMenu">
-                        About Us
+                        <span data-i18n="nav.about_us">About Us</span>
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                             <path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.4"
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
                     <div class="nav-dropdown__menu" id="brandDropdownMenu">
-                        <a href="#about" class="nav-dropdown__link">About Kature Decorators</a>
-                        <a href="#legacy" class="nav-dropdown__link">Founder&apos;s Note</a>
-                        <a href="#team" class="nav-dropdown__link">Meet The Team</a>
-                        <a href="#awards" class="nav-dropdown__link">Awards & Recognition</a>
+                        <a href="#about" class="nav-dropdown__link" data-i18n="nav.about_kature">About Kature Decorators</a>
+                        <a href="#legacy" class="nav-dropdown__link" data-i18n="nav.founders_note">Founder&apos;s Note</a>
+                        <a href="#team" class="nav-dropdown__link" data-i18n="nav.meet_team">Meet The Team</a>
+                        <a href="#awards" class="nav-dropdown__link" data-i18n="nav.awards">Awards & Recognition</a>
                     </div>
                 </div>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#inventory" class="nav-link">Infrastructure</a>
-                <a href="#portfolio" class="nav-link">Portfolio</a>
-                <a href="#testimonials" class="nav-link">Why Kature</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#services" class="nav-link" data-i18n="nav.services">Services</a>
+                <a href="#inventory" class="nav-link" data-i18n="nav.infrastructure">Infrastructure</a>
+                <a href="#portfolio" class="nav-link" data-i18n="nav.portfolio">Portfolio</a>
+                <a href="#testimonials" class="nav-link" data-i18n="nav.why_kature">Why Kature</a>
+                <a href="#faq" class="nav-link" data-i18n="nav.faq">FAQ</a>
+                <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+                <div class="lang-switcher">
+                    <select id="langSwitcher" class="lang-switcher__select" aria-label="Select language">
+                        <option value="en">English</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="mr">मराठी</option>
+                        <option value="bn">বাংলা</option>
+                        <option value="ta">தமிழ்</option>
+                    </select>
+                </div>
             </nav>
             <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Toggle menu">
                 <span class="hamburger-line"></span>
@@ -95,25 +105,25 @@
         <div class="hero__parallax-bg"></div>
         <div class="hero__overlay"></div>
         <div class="hero__content container">
-            <p class="hero__eyebrow animate-fade-up">Since 1970 | Luxury Event Decorators</p>
-            <h1 class="hero__headline animate-fade-up" style="animation-delay: 0.15s;">
+            <p class="hero__eyebrow animate-fade-up" data-i18n="hero.eyebrow">Since 1970 | Luxury Event Decorators</p>
+            <h1 class="hero__headline animate-fade-up" style="animation-delay: 0.15s;" data-i18n="hero.headline">
                 Outdoor celebrations,<br>
                 designed with grandeur.
             </h1>
-            <p class="hero__subheading animate-fade-up" style="animation-delay: 0.3s;">
+            <p class="hero__subheading animate-fade-up" style="animation-delay: 0.3s;" data-i18n="hero.subheading">
                 Kature Decorators designs immersive celebrations, statement stages, refined guest environments,
                 and large-format venue infrastructure for weddings, social functions, and premium events.
             </p>
             <div class="hero__ctas animate-fade-up" style="animation-delay: 0.45s;">
-                <a href="#portfolio" class="btn btn--primary">Explore The Portfolio</a>
-                <a href="#contact" class="btn btn--outline">Plan Your Event</a>
+                <a href="#portfolio" class="btn btn--primary" data-i18n="hero.cta_portfolio">Explore The Portfolio</a>
+                <a href="#contact" class="btn btn--outline" data-i18n="hero.cta_plan">Plan Your Event</a>
             </div>
             <div class="hero__facts animate-fade-up" style="animation-delay: 0.52s;">
-                <span>Luxury Weddings</span>
-                <span>Destination Celebrations</span>
-                <span>Corporate Infrastructure</span>
+                <span data-i18n="hero.fact1">Luxury Weddings</span>
+                <span data-i18n="hero.fact2">Destination Celebrations</span>
+                <span data-i18n="hero.fact3">Corporate Infrastructure</span>
             </div>
-            <p class="hero__tagline animate-fade-up" style="animation-delay: 0.6s;">
+            <p class="hero__tagline animate-fade-up" style="animation-delay: 0.6s;" data-i18n="hero.tagline">
                 From entry moments to final guest flow, every detail is designed to feel elevated and effortless.
             </p>
         </div>
@@ -121,27 +131,27 @@
 
     <section class="stats-band">
         <div class="stats-band__track">
-            <span>55+ Years Of Legacy</span>
-            <span>500+ Events Delivered</span>
-            <span>300k+ Guests Welcomed</span>
-            <span>Pune Based | Destination Ready</span>
-            <span>Luxury Weddings</span>
-            <span>In-House Infrastructure</span>
+            <span data-i18n="stats.legacy">55+ Years Of Legacy</span>
+            <span data-i18n="stats.events">500+ Events Delivered</span>
+            <span data-i18n="stats.guests">300k+ Guests Welcomed</span>
+            <span data-i18n="stats.location">Pune Based | Destination Ready</span>
+            <span data-i18n="stats.weddings">Luxury Weddings</span>
+            <span data-i18n="stats.infrastructure">In-House Infrastructure</span>
         </div>
     </section>
 
     <section class="credibility section">
         <div class="container">
-            <p class="section-eyebrow reveal">Trusted Presence</p>
-            <h2 class="section-heading reveal">Presented for the kind of families, venues, and brands that expect more
+            <p class="section-eyebrow reveal" data-i18n="credibility.eyebrow">Trusted Presence</p>
+            <h2 class="section-heading reveal" data-i18n="credibility.heading">Presented for the kind of families, venues, and brands that expect more
                 than decor alone.</h2>
             <div class="credibility__logos reveal">
-                <span>Heritage Venues</span>
-                <span>Destination Resorts</span>
-                <span>Luxury Families</span>
-                <span>Corporate Hosts</span>
-                <span>Wedding Planners</span>
-                <span>Event Producers</span>
+                <span data-i18n="credibility.tag1">Heritage Venues</span>
+                <span data-i18n="credibility.tag2">Destination Resorts</span>
+                <span data-i18n="credibility.tag3">Luxury Families</span>
+                <span data-i18n="credibility.tag4">Corporate Hosts</span>
+                <span data-i18n="credibility.tag5">Wedding Planners</span>
+                <span data-i18n="credibility.tag6">Event Producers</span>
             </div>
         </div>
     </section>
@@ -149,23 +159,23 @@
     <section class="showcase section">
         <div class="container">
             <div class="showcase__intro reveal">
-                <p class="section-eyebrow">Visual Signature</p>
-                <h2 class="section-heading">Spaces that immediately signal occasion, scale, and sophistication.</h2>
+                <p class="section-eyebrow" data-i18n="showcase.eyebrow">Visual Signature</p>
+                <h2 class="section-heading" data-i18n="showcase.heading">Spaces that immediately signal occasion, scale, and sophistication.</h2>
             </div>
             <div class="showcase__grid">
                 <article class="showcase__card reveal">
                     <img src="images/kature-03.jpg" alt="Luxury indoor wedding stage with chandelier lighting"
                         loading="lazy">
                     <div class="showcase__card-copy">
-                        <span>Grand receptions</span>
-                        <h3>Statement stage styling with warm luxury lighting.</h3>
+                        <span data-i18n="showcase.card1.tag">Grand receptions</span>
+                        <h3 data-i18n="showcase.card1.title">Statement stage styling with warm luxury lighting.</h3>
                     </div>
                 </article>
                 <article class="showcase__card reveal" style="--reveal-delay: 0.1s;">
                     <img src="images/kature-04.jpg" alt="Elegant floral wedding decor in pink tones" loading="lazy">
                     <div class="showcase__card-copy">
-                        <span>Ceremony styling</span>
-                        <h3>Floral-led decor stories for haldi, mehendi, phera, and intimate rituals.</h3>
+                        <span data-i18n="showcase.card2.tag">Ceremony styling</span>
+                        <h3 data-i18n="showcase.card2.title">Floral-led decor stories for haldi, mehendi, phera, and intimate rituals.</h3>
                     </div>
                 </article>
                 <article class="showcase__card reveal" style="--reveal-delay: 0.2s;">
@@ -173,8 +183,8 @@
                         alt="Premium event dining setup with floral centerpieces and illuminated flooring"
                         loading="lazy">
                     <div class="showcase__card-copy">
-                        <span>Experiential venues</span>
-                        <h3>Guest environments that feel polished, layered, and camera ready.</h3>
+                        <span data-i18n="showcase.card3.tag">Experiential venues</span>
+                        <h3 data-i18n="showcase.card3.title">Guest environments that feel polished, layered, and camera ready.</h3>
                     </div>
                 </article>
             </div>
@@ -185,14 +195,14 @@
         <div class="container">
             <div class="about__grid">
                 <div class="about__text reveal">
-                    <p class="section-eyebrow">Who We Are</p>
-                    <h2 class="section-heading">Crafting extraordinary event environments since <span
+                    <p class="section-eyebrow" data-i18n="about.eyebrow">Who We Are</p>
+                    <h2 class="section-heading" data-i18n="about.heading">Crafting extraordinary event environments since <span
                             class="text-gold">1970</span></h2>
-                    <p class="about__desc">
+                    <p class="about__desc" data-i18n="about.desc1">
                         Kature Decorators brings together luxury decor direction and dependable on-ground execution for
                         weddings, social celebrations, corporate gatherings, and large guest experiences.
                     </p>
-                    <p class="about__desc">
+                    <p class="about__desc" data-i18n="about.desc2">
                         Your events become really special only when every touchpoint feels considered: arrival styling,
                         ceremony focus,
                         stage design, guest flow, dining environments, and the infrastructure that quietly holds it all
@@ -200,16 +210,16 @@
                     </p>
                     <div class="about__stats">
                         <div class="stat">
-                            <span class="stat__number text-gold">500+</span>
-                            <span class="stat__label">Experiences Delivered</span>
+                            <span class="stat__number text-gold" data-i18n="about.stat1_number">500+</span>
+                            <span class="stat__label" data-i18n="about.stat1_label">Experiences Delivered</span>
                         </div>
                         <div class="stat">
-                            <span class="stat__number text-gold">55+</span>
-                            <span class="stat__label">Years Of Legacy</span>
+                            <span class="stat__number text-gold" data-i18n="about.stat2_number">55+</span>
+                            <span class="stat__label" data-i18n="about.stat2_label">Years Of Legacy</span>
                         </div>
                         <div class="stat">
-                            <span class="stat__number text-gold">300k+</span>
-                            <span class="stat__label">Guests Welcomed</span>
+                            <span class="stat__number text-gold" data-i18n="about.stat3_number">300k+</span>
+                            <span class="stat__label" data-i18n="about.stat3_label">Guests Welcomed</span>
                         </div>
                     </div>
                 </div>
@@ -219,16 +229,16 @@
                             alt="Lavish event hall with chandeliers, luxury lounge seating, and red aisle carpet"
                             loading="lazy">
                         <div class="about__editorial-card">
-                            <span class="about__editorial-label">Designed To Impress</span>
-                            <h3>Luxury decor with the confidence of in-house execution.</h3>
-                            <p>
+                            <span class="about__editorial-label" data-i18n="about.editorial_label">Designed To Impress</span>
+                            <h3 data-i18n="about.editorial_title">Luxury decor with the confidence of in-house execution.</h3>
+                            <p data-i18n="about.editorial_desc">
                                 Kature brings visual detail and operational discipline together, so the atmosphere feels
                                 unforgettable while the setup remains calm, structured, and guest-ready.
                             </p>
                             <div class="about__editorial-points">
-                                <span>Decor direction</span>
-                                <span>Venue styling</span>
-                                <span>Execution control</span>
+                                <span data-i18n="about.editorial_tag1">Decor direction</span>
+                                <span data-i18n="about.editorial_tag2">Venue styling</span>
+                                <span data-i18n="about.editorial_tag3">Execution control</span>
                             </div>
                         </div>
                         <div class="about__image-accent"></div>
@@ -246,20 +256,20 @@
                         alt="Portrait of Sameer Kature, founder of Kature Decorators" loading="lazy"
                         class="legacy-note__portrait">
                     <div class="legacy-note__content">
-                        <p class="section-eyebrow">Founder's Note</p>
-                        <h2 class="section-heading">A brand story that feels established, personal, and trusted.</h2>
-                        <p>
+                        <p class="section-eyebrow" data-i18n="legacy.eyebrow">Founder's Note</p>
+                        <h2 class="section-heading" data-i18n="legacy.heading">A brand story that feels established, personal, and trusted.</h2>
+                        <p data-i18n="legacy.quote">
                             "For us, decor has never been about ornament alone. It is about the feeling a family carries
                             home after the event is over.
                             Every venue, every guest pathway, every stage line, and every floral detail should work
                             together to create that feeling."
                         </p>
-                        <p class="legacy-note__author">Sameer Kature | Founder, Kature Decorators
+                        <p class="legacy-note__author" data-i18n="legacy.author">Sameer Kature | Founder, Kature Decorators
                         </p>
                         <div class="legacy-note__signature">
-                            <span>Since 1970</span>
-                            <span>Generational trust</span>
-                            <span>Crafted with precision</span>
+                            <span data-i18n="legacy.tag1">Since 1970</span>
+                            <span data-i18n="legacy.tag2">Generational trust</span>
+                            <span data-i18n="legacy.tag3">Crafted with precision</span>
                         </div>
                     </div>
                 </div>
@@ -269,17 +279,17 @@
 
     <section id="team" class="team section">
         <div class="container">
-            <p class="section-eyebrow reveal">Meet The Team</p>
-            <h2 class="section-heading reveal">A family-owned business with generations of expertise in the industry.
+            <p class="section-eyebrow reveal" data-i18n="team.eyebrow">Meet The Team</p>
+            <h2 class="section-heading reveal" data-i18n="team.heading">A family-owned business with generations of expertise in the industry.
             </h2>
             <div class="team__grid">
                 <article class="team__card reveal">
                     <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?cs=srgb&dl=pexels-andrea-piacquadio-774909.jpg&fm=jpg"
                         alt="Sample event styling lead portrait" loading="lazy">
                     <div class="team__copy">
-                        <h3>Dipali Kature </h3>
-                        <p>Managing Director.</p>
-                        <div class="team__extra">
+                        <h3 data-i18n="team.member1.name">Dipali Kature </h3>
+                        <p data-i18n="team.member1.role">Managing Director.</p>
+                        <div class="team__extra" data-i18n="team.member1.desc">
                             Leads creative translations from moodboards to on-ground styling and coordinates with
                             planners for each celebration moment.
                         </div>
@@ -289,9 +299,9 @@
                     <img src="https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?cs=srgb&dl=pexels-anna-shvets-3760263.jpg&fm=jpg"
                         alt="Sample design lead portrait" loading="lazy">
                     <div class="team__copy">
-                        <h3>Sameer Kature</h3>
-                        <p>Founder & CEO.</p>
-                        <div class="team__extra">
+                        <h3 data-i18n="team.member2.name">Sameer Kature</h3>
+                        <p data-i18n="team.member2.role">Founder & CEO.</p>
+                        <div class="team__extra" data-i18n="team.member2.desc">
                             Helps clients structure function flow, priorities, and visual expectations so the final
                             event feels cohesive from first call to final delivery.
                         </div>
@@ -301,9 +311,9 @@
                     <img src="https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg?cs=srgb&dl=pexels-anna-shvets-3777943.jpg&fm=jpg"
                         alt="Sample operations head portrait" loading="lazy">
                     <div class="team__copy">
-                        <h3>Soham Kature</h3>
-                        <p>Chief of Staff.</p>
-                        <div class="team__extra">
+                        <h3 data-i18n="team.member3.name">Soham Kature</h3>
+                        <p data-i18n="team.member3.role">Chief of Staff.</p>
+                        <div class="team__extra" data-i18n="team.member3.desc">
                             Oversees venue build, technical dependencies, vendor alignment, and site readiness for large
                             guest counts and tight delivery windows.
                         </div>
@@ -315,23 +325,23 @@
 
     <section id="awards" class="awards section">
         <div class="container">
-            <p class="section-eyebrow reveal">Awards & Recognition</p>
-            <h2 class="section-heading reveal">Accolades that speak for themselves.</h2>
+            <p class="section-eyebrow reveal" data-i18n="awards.eyebrow">Awards & Recognition</p>
+            <h2 class="section-heading reveal" data-i18n="awards.heading">Accolades that speak for themselves.</h2>
             <div class="awards__grid">
                 <div class="awards__item reveal" style="--reveal-delay: 0.05s;">
                     <div class="awards__graphic awards__graphic--laurel"></div>
-                    <strong>Top Event Infrastructure Partner</strong>
-                    <span>Event Production India 2024</span>
+                    <strong data-i18n="awards.item1.title">Top Event Infrastructure Partner</strong>
+                    <span data-i18n="awards.item1.source">Event Production India 2024</span>
                 </div>
                 <div class="awards__item reveal" style="--reveal-delay: 0.1s;">
                     <div class="awards__graphic awards__graphic--medal"></div>
-                    <strong>Editor's Choice for Grand Venues</strong>
-                    <span>Celebration Living 2025</span>
+                    <strong data-i18n="awards.item2.title">Editor's Choice for Grand Venues</strong>
+                    <span data-i18n="awards.item2.source">Celebration Living 2025</span>
                 </div>
                 <div class="awards__item reveal" style="--reveal-delay: 0.15s;">
                     <div class="awards__graphic awards__graphic--seal"></div>
-                    <strong>Trusted Destination Wedding Vendor</strong>
-                    <span>Premium Weddings Guide 2024</span>
+                    <strong data-i18n="awards.item3.title">Trusted Destination Wedding Vendor</strong>
+                    <span data-i18n="awards.item3.source">Premium Weddings Guide 2024</span>
                 </div>
             </div>
         </div>
@@ -339,13 +349,13 @@
 
     <section id="services" class="services section">
         <div class="container">
-            <p class="section-eyebrow reveal">What We Do</p>
-            <h2 class="section-heading reveal">Services shaped for premium events</h2>
+            <p class="section-eyebrow reveal" data-i18n="services.eyebrow">What We Do</p>
+            <h2 class="section-heading reveal" data-i18n="services.heading">Services shaped for premium events</h2>
             <div class="services__highlights reveal">
-                <span>Arrival design</span>
-                <span>Mandap and stage styling</span>
-                <span>Guest flow planning</span>
-                <span>Theme translation</span>
+                <span data-i18n="services.highlight1">Arrival design</span>
+                <span data-i18n="services.highlight2">Mandap and stage styling</span>
+                <span data-i18n="services.highlight3">Guest flow planning</span>
+                <span data-i18n="services.highlight4">Theme translation</span>
             </div>
 
             <div class="services__grid">
@@ -360,46 +370,46 @@
                             <circle cx="24" cy="18" r="4" stroke="currentColor" stroke-width="1.5" />
                         </svg>
                     </div>
-                    <h3 class="services__title">Wedding decor and guest experience</h3>
+                    <h3 class="services__title" data-i18n="services.col1.title">Wedding decor and guest experience</h3>
                     <ul class="services__list">
                         <li>
                             <span class="services__list-icon">01</span>
                             <div>
-                                <strong>Arrival styling and welcome installations</strong>
-                                <p>Signature entries, floral framing, hospitality zones, and photogenic first
+                                <strong data-i18n="services.col1.item1.title">Arrival styling and welcome installations</strong>
+                                <p data-i18n="services.col1.item1.desc">Signature entries, floral framing, hospitality zones, and photogenic first
                                     impressions.</p>
                             </div>
                         </li>
                         <li>
                             <span class="services__list-icon">02</span>
                             <div>
-                                <strong>Mandap, stage and ceremony design</strong>
-                                <p>Statement focal points designed to feel luxurious in person and cinematic in
+                                <strong data-i18n="services.col1.item2.title">Mandap, stage and ceremony design</strong>
+                                <p data-i18n="services.col1.item2.desc">Statement focal points designed to feel luxurious in person and cinematic in
                                     photographs.</p>
                             </div>
                         </li>
                         <li>
                             <span class="services__list-icon">03</span>
                             <div>
-                                <strong>Dining, lounge and guest flow planning</strong>
-                                <p>Comfort-led layouts that support movement, social energy, and a premium hospitality
+                                <strong data-i18n="services.col1.item3.title">Dining, lounge and guest flow planning</strong>
+                                <p data-i18n="services.col1.item3.desc">Comfort-led layouts that support movement, social energy, and a premium hospitality
                                     experience.</p>
                             </div>
                         </li>
                         <li>
                             <span class="services__list-icon">04</span>
                             <div>
-                                <strong>Theme translation and full venue styling</strong>
-                                <p>From heritage-inspired elegance to modern luxury, every touchpoint is styled as one
+                                <strong data-i18n="services.col1.item4.title">Theme translation and full venue styling</strong>
+                                <p data-i18n="services.col1.item4.desc">From heritage-inspired elegance to modern luxury, every touchpoint is styled as one
                                     cohesive story.</p>
                             </div>
                         </li>
                     </ul>
                     <div class="services__pill-row">
-                        <span>Haldi</span>
-                        <span>Mehendi</span>
-                        <span>Phera</span>
-                        <span>Reception</span>
+                        <span data-i18n="services.col1.pill1">Haldi</span>
+                        <span data-i18n="services.col1.pill2">Mehendi</span>
+                        <span data-i18n="services.col1.pill3">Phera</span>
+                        <span data-i18n="services.col1.pill4">Reception</span>
                     </div>
                 </div>
 
@@ -417,61 +427,61 @@
                             <line x1="32" y1="42" x2="32" y2="28" stroke="currentColor" stroke-width="1.5" />
                         </svg>
                     </div>
-                    <h3 class="services__title">Infrastructure for scale and precision</h3>
+                    <h3 class="services__title" data-i18n="services.col2.title">Infrastructure for scale and precision</h3>
                     <ul class="services__list">
                         <li>
                             <span class="services__list-icon">01</span>
                             <div>
-                                <strong>German hangar structures</strong>
-                                <p>Engineered clear-span setups for destination weddings, premium exhibitions, and
+                                <strong data-i18n="services.col2.item1.title">German hangar structures</strong>
+                                <p data-i18n="services.col2.item1.desc">Engineered clear-span setups for destination weddings, premium exhibitions, and
                                     mega-format events.</p>
                             </div>
                         </li>
                         <li>
                             <span class="services__list-icon">02</span>
                             <div>
-                                <strong>Roof truss, rigging and technical support</strong>
-                                <p>Reliable structural support for lighting, production, LED displays, and performance
+                                <strong data-i18n="services.col2.item2.title">Roof truss, rigging and technical support</strong>
+                                <p data-i18n="services.col2.item2.desc">Reliable structural support for lighting, production, LED displays, and performance
                                     environments.</p>
                             </div>
                         </li>
                         <li>
                             <span class="services__list-icon">03</span>
                             <div>
-                                <strong>Climate-controlled guest comfort</strong>
-                                <p>Ducted cooling solutions that keep large guest counts comfortable without
+                                <strong data-i18n="services.col2.item3.title">Climate-controlled guest comfort</strong>
+                                <p data-i18n="services.col2.item3.desc">Ducted cooling solutions that keep large guest counts comfortable without
                                     compromising aesthetics.</p>
                             </div>
                         </li>
                         <li>
                             <span class="services__list-icon">04</span>
                             <div>
-                                <strong>Temporary venue construction</strong>
-                                <p>End-to-end open-ground transformation with flooring, facades, utility planning, and
+                                <strong data-i18n="services.col2.item4.title">Temporary venue construction</strong>
+                                <p data-i18n="services.col2.item4.desc">End-to-end open-ground transformation with flooring, facades, utility planning, and
                                     execution discipline.</p>
                             </div>
                         </li>
                         <li>
                             <span class="services__list-icon">05</span>
                             <div>
-                                <strong>Flooring, pagodas and utility elements</strong>
-                                <p>Refined modular systems that help outdoor venues feel polished, finished, and
+                                <strong data-i18n="services.col2.item5.title">Flooring, pagodas and utility elements</strong>
+                                <p data-i18n="services.col2.item5.desc">Refined modular systems that help outdoor venues feel polished, finished, and
                                     guest-ready.</p>
                             </div>
                         </li>
                     </ul>
                     <div class="services__pill-row">
-                        <span>Hangars</span>
-                        <span>Rigging</span>
-                        <span>Cooling</span>
-                        <span>Venue build</span>
+                        <span data-i18n="services.col2.pill1">Hangars</span>
+                        <span data-i18n="services.col2.pill2">Rigging</span>
+                        <span data-i18n="services.col2.pill3">Cooling</span>
+                        <span data-i18n="services.col2.pill4">Venue build</span>
                     </div>
                 </div>
             </div>
 
             <div class="services__tagline reveal">
                 <div class="tagline-line"></div>
-                <p>Luxury is not just how an event looks. It is how smoothly every layer comes together.</p>
+                <p data-i18n="services.tagline">Luxury is not just how an event looks. It is how smoothly every layer comes together.</p>
                 <div class="tagline-line"></div>
             </div>
         </div>
@@ -479,15 +489,15 @@
 
     <section class="featured-events section">
         <div class="container">
-            <p class="section-eyebrow reveal">Featured Events</p>
-            <h2 class="section-heading reveal">A few celebrations we have been proud to be part of.</h2>
+            <p class="section-eyebrow reveal" data-i18n="featured.eyebrow">Featured Events</p>
+            <h2 class="section-heading reveal" data-i18n="featured.heading">A few celebrations we have been proud to be part of.</h2>
             <div class="featured-events__grid">
                 <article class="featured-events__card reveal">
                     <img src="images/kature-03.jpg" alt="Luxury wedding reception dining hall" loading="lazy">
                     <div class="featured-events__copy">
-                        <span class="featured-events__label">Wedding Signature</span>
-                        <h3>Royal Reception Evening</h3>
-                        <p>1,200 guests | Indoor venue | Reception stage, dining styling, floral detailing, guest zoning
+                        <span class="featured-events__label" data-i18n="featured.card1.label">Wedding Signature</span>
+                        <h3 data-i18n="featured.card1.title">Royal Reception Evening</h3>
+                        <p data-i18n="featured.card1.desc">1,200 guests | Indoor venue | Reception stage, dining styling, floral detailing, guest zoning
                         </p>
                     </div>
                 </article>
@@ -495,17 +505,17 @@
                     <img src="images/kature-05.jpg" alt="Outdoor wedding stage with elegant floral design"
                         loading="lazy">
                     <div class="featured-events__copy">
-                        <span class="featured-events__label">Destination Wedding</span>
-                        <h3>Open-Air Lawn Celebration</h3>
-                        <p>800 guests | Resort venue | Ceremony stage, lounge pockets, dining layouts, decor styling</p>
+                        <span class="featured-events__label" data-i18n="featured.card2.label">Destination Wedding</span>
+                        <h3 data-i18n="featured.card2.title">Open-Air Lawn Celebration</h3>
+                        <p data-i18n="featured.card2.desc">800 guests | Resort venue | Ceremony stage, lounge pockets, dining layouts, decor styling</p>
                     </div>
                 </article>
                 <article class="featured-events__card reveal" style="--reveal-delay: 0.2s;">
                     <img src="images/kature-06.jpg" alt="Corporate gala event with dramatic lighting" loading="lazy">
                     <div class="featured-events__copy">
-                        <span class="featured-events__label">Corporate Gala</span>
-                        <h3>Annual Leadership Event</h3>
-                        <p>2,500 guests | Large-format venue | Stage production, lighting, guest seating, technical
+                        <span class="featured-events__label" data-i18n="featured.card3.label">Corporate Gala</span>
+                        <h3 data-i18n="featured.card3.title">Annual Leadership Event</h3>
+                        <p data-i18n="featured.card3.desc">2,500 guests | Large-format venue | Stage production, lighting, guest seating, technical
                             setup</p>
                     </div>
                 </article>
@@ -515,21 +525,21 @@
 
     <section id="inventory" class="inventory section">
         <div class="container">
-            <p class="section-eyebrow reveal">What We Own</p>
-            <h2 class="section-heading reveal">In-house capability that builds confidence</h2>
-            <p class="section-subtitle reveal">In-house inventory allows stronger control over quality, delivery
+            <p class="section-eyebrow reveal" data-i18n="inventory.eyebrow">What We Own</p>
+            <h2 class="section-heading reveal" data-i18n="inventory.heading">In-house capability that builds confidence</h2>
+            <p class="section-subtitle reveal" data-i18n="inventory.subtitle">In-house inventory allows stronger control over quality, delivery
                 timelines,
                 venue transformation, and large guest comfort.</p>
             <div class="inventory__summary reveal">
-                <div><strong>15m - 50m</strong><span>Clear span structures</span></div>
-                <div><strong>20T - 25T</strong><span>Cooling support</span></div>
-                <div><strong>Modular</strong><span>Fast deployment systems</span></div>
+                <div><strong data-i18n="inventory.summary1.value">15m - 50m</strong><span data-i18n="inventory.summary1.label">Clear span structures</span></div>
+                <div><strong data-i18n="inventory.summary2.value">20T - 25T</strong><span data-i18n="inventory.summary2.label">Cooling support</span></div>
+                <div><strong data-i18n="inventory.summary3.value">Modular</strong><span data-i18n="inventory.summary3.label">Fast deployment systems</span></div>
             </div>
 
             <div class="inventory__grid">
                 <div class="inventory__card reveal">
                     <div class="inventory__card-top">
-                        <span class="inventory__card-badge">Outdoor Venues</span>
+                        <span class="inventory__card-badge" data-i18n="inventory.card1.badge">Outdoor Venues</span>
                         <span class="inventory__card-code">KD-01</span>
                     </div>
                     <div class="inventory__card-icon">01</div>
@@ -537,16 +547,16 @@
                         <img src="images/kature-06.jpg" alt="Large-format event hangar setup by Kature Decorators"
                             loading="lazy">
                     </div>
-                    <h3 class="inventory__card-title">German Hangars</h3>
+                    <h3 class="inventory__card-title" data-i18n="inventory.card1.title">German Hangars</h3>
                     <ul class="inventory__specs">
-                        <li><span class="spec-bullet"></span> Clear spans from 15m to 50m</li>
-                        <li><span class="spec-bullet"></span> Height options from 3m to 6m</li>
-                        <li><span class="spec-bullet"></span> Weather-resistant enclosure systems</li>
-                        <li><span class="spec-bullet"></span> Ideal for destination weddings and premium exhibitions
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card1.spec1">Clear spans from 15m to 50m</span></li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card1.spec2">Height options from 3m to 6m</span></li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card1.spec3">Weather-resistant enclosure systems</span></li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card1.spec4">Ideal for destination weddings and premium exhibitions</span>
                         </li>
                     </ul>
                     <a href="#contact" class="inventory__learn-more">
-                        <span>Inquire Now</span>
+                        <span data-i18n="inventory.card1.cta">Inquire Now</span>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
                                 stroke-linecap="round" stroke-linejoin="round" />
@@ -556,7 +566,7 @@
 
                 <div class="inventory__card reveal" style="--reveal-delay: 0.1s;">
                     <div class="inventory__card-top">
-                        <span class="inventory__card-badge">Guest Comfort</span>
+                        <span class="inventory__card-badge" data-i18n="inventory.card2.badge">Guest Comfort</span>
                         <span class="inventory__card-code">KD-02</span>
                     </div>
                     <div class="inventory__card-icon">02</div>
@@ -564,15 +574,15 @@
                         <img src="images/kature-08.jpg" alt="Climate-ready dome structure with guest comfort systems"
                             loading="lazy">
                     </div>
-                    <h3 class="inventory__card-title">Cooling and Airflow Systems</h3>
+                    <h3 class="inventory__card-title" data-i18n="inventory.card2.title">Cooling and Airflow Systems</h3>
                     <ul class="inventory__specs">
-                        <li><span class="spec-bullet"></span> 20-ton and 25-ton unit options</li>
-                        <li><span class="spec-bullet"></span> Guest comfort for high-capacity gatherings</li>
-                        <li><span class="spec-bullet"></span> Full airflow distribution ducting</li>
-                        <li><span class="spec-bullet"></span> Rapid deployment capability</li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card2.spec1">20-ton and 25-ton unit options</span></li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card2.spec2">Guest comfort for high-capacity gatherings</span></li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card2.spec3">Full airflow distribution ducting</span></li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card2.spec4">Rapid deployment capability</span></li>
                     </ul>
                     <a href="#contact" class="inventory__learn-more">
-                        <span>Inquire Now</span>
+                        <span data-i18n="inventory.card2.cta">Inquire Now</span>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
                                 stroke-linecap="round" stroke-linejoin="round" />
@@ -582,7 +592,7 @@
 
                 <div class="inventory__card reveal" style="--reveal-delay: 0.2s;">
                     <div class="inventory__card-top">
-                        <span class="inventory__card-badge">Technical Layer</span>
+                        <span class="inventory__card-badge" data-i18n="inventory.card3.badge">Technical Layer</span>
                         <span class="inventory__card-code">KD-03</span>
                     </div>
                     <div class="inventory__card-icon">03</div>
@@ -590,15 +600,15 @@
                         <img src="images/kature-03.jpg" alt="Decor installation showing structural lighting capability"
                             loading="lazy">
                     </div>
-                    <h3 class="inventory__card-title">Aluminium Roof Truss</h3>
+                    <h3 class="inventory__card-title" data-i18n="inventory.card3.title">Aluminium Roof Truss</h3>
                     <ul class="inventory__specs">
-                        <li><span class="spec-bullet"></span> Clear spans from 15m to 50m</li>
-                        <li><span class="spec-bullet"></span> Supports lighting and LED installations</li>
-                        <li><span class="spec-bullet"></span> Suitable for stage and AV environments</li>
-                        <li><span class="spec-bullet"></span> Modular assembly for efficient setup</li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card3.spec1">Clear spans from 15m to 50m</span></li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card3.spec2">Supports lighting and LED installations</span></li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card3.spec3">Suitable for stage and AV environments</span></li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card3.spec4">Modular assembly for efficient setup</span></li>
                     </ul>
                     <a href="#contact" class="inventory__learn-more">
-                        <span>Inquire Now</span>
+                        <span data-i18n="inventory.card3.cta">Inquire Now</span>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
                                 stroke-linecap="round" stroke-linejoin="round" />
@@ -608,7 +618,7 @@
 
                 <div class="inventory__card reveal" style="--reveal-delay: 0.3s;">
                     <div class="inventory__card-top">
-                        <span class="inventory__card-badge">Hospitality Build</span>
+                        <span class="inventory__card-badge" data-i18n="inventory.card4.badge">Hospitality Build</span>
                         <span class="inventory__card-code">KD-04</span>
                     </div>
                     <div class="inventory__card-icon">04</div>
@@ -616,15 +626,15 @@
                         <img src="images/kature-05.jpg" alt="Open-ground hospitality setup with styled flooring zones"
                             loading="lazy">
                     </div>
-                    <h3 class="inventory__card-title">Pagodas and Flooring</h3>
+                    <h3 class="inventory__card-title" data-i18n="inventory.card4.title">Pagodas and Flooring</h3>
                     <ul class="inventory__specs">
-                        <li><span class="spec-bullet"></span> Premium flooring systems for outdoor setups</li>
-                        <li><span class="spec-bullet"></span> Fast installation turnaround</li>
-                        <li><span class="spec-bullet"></span> Terrace, lawn, and open-ground ready</li>
-                        <li><span class="spec-bullet"></span> Useful for lounges, hospitality, and service zones</li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card4.spec1">Premium flooring systems for outdoor setups</span></li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card4.spec2">Fast installation turnaround</span></li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card4.spec3">Terrace, lawn, and open-ground ready</span></li>
+                        <li><span class="spec-bullet"></span> <span data-i18n="inventory.card4.spec4">Useful for lounges, hospitality, and service zones</span></li>
                     </ul>
                     <a href="#contact" class="inventory__learn-more">
-                        <span>Inquire Now</span>
+                        <span data-i18n="inventory.card4.cta">Inquire Now</span>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
                                 stroke-linecap="round" stroke-linejoin="round" />
@@ -637,18 +647,18 @@
 
     <section id="portfolio" class="portfolio section">
         <div class="container">
-            <p class="section-eyebrow reveal">Our Portfolio</p>
-            <h2 class="section-heading reveal">A glimpse into the worlds we create</h2>
-            <p class="section-subtitle reveal">
+            <p class="section-eyebrow reveal" data-i18n="portfolio.eyebrow">Our Portfolio</p>
+            <h2 class="section-heading reveal" data-i18n="portfolio.heading">A glimpse into the worlds we create</h2>
+            <p class="section-subtitle reveal" data-i18n="portfolio.subtitle">
                 From floral ceremony moments to large-format guest venues, every setup is shaped to feel immersive,
                 polished, and worthy of the occasion.
             </p>
 
             <div class="portfolio__filters reveal">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="weddings">Weddings</button>
-                <button class="filter-btn" data-filter="corporate">Corporate</button>
-                <button class="filter-btn" data-filter="outdoor">Outdoor Events</button>
+                <button class="filter-btn active" data-filter="all" data-i18n="portfolio.filter_all">All</button>
+                <button class="filter-btn" data-filter="weddings" data-i18n="portfolio.filter_weddings">Weddings</button>
+                <button class="filter-btn" data-filter="corporate" data-i18n="portfolio.filter_corporate">Corporate</button>
+                <button class="filter-btn" data-filter="outdoor" data-i18n="portfolio.filter_outdoor">Outdoor Events</button>
             </div>
 
             <div class="portfolio__grid">
@@ -657,11 +667,11 @@
                         <img src="images/kature-03.jpg" alt="Elegant wedding stage setup in a grand indoor venue"
                             loading="lazy">
                         <div class="portfolio__card-overlay">
-                            <span class="portfolio__tag">Wedding</span>
-                            <h4 class="portfolio__card-title">Grand Reception Stage</h4>
-                            <p class="portfolio__card-meta">A warm, chandelier-lit reception environment with strong
+                            <span class="portfolio__tag" data-i18n="portfolio.card1.tag">Wedding</span>
+                            <h4 class="portfolio__card-title" data-i18n="portfolio.card1.title">Grand Reception Stage</h4>
+                            <p class="portfolio__card-meta" data-i18n="portfolio.card1.meta">A warm, chandelier-lit reception environment with strong
                                 focal styling.</p>
-                            <span class="portfolio__toggle-hint">Ideal for evening receptions, sangeet, and formal
+                            <span class="portfolio__toggle-hint" data-i18n="portfolio.card1.hint">Ideal for evening receptions, sangeet, and formal
                                 celebration nights.</span>
                         </div>
                     </div>
@@ -672,11 +682,11 @@
                         <img src="images/kature-06.jpg"
                             alt="Corporate event stage with dramatic lighting and dinner seating" loading="lazy">
                         <div class="portfolio__card-overlay">
-                            <span class="portfolio__tag">Corporate</span>
-                            <h4 class="portfolio__card-title">Stage-Led Event Experience</h4>
-                            <p class="portfolio__card-meta">Lighting, screens, guest dining, and stage architecture
+                            <span class="portfolio__tag" data-i18n="portfolio.card2.tag">Corporate</span>
+                            <h4 class="portfolio__card-title" data-i18n="portfolio.card2.title">Stage-Led Event Experience</h4>
+                            <p class="portfolio__card-meta" data-i18n="portfolio.card2.meta">Lighting, screens, guest dining, and stage architecture
                                 planned as one visual environment.</p>
-                            <span class="portfolio__toggle-hint">Built for launches, celebrations, award nights, and
+                            <span class="portfolio__toggle-hint" data-i18n="portfolio.card2.hint">Built for launches, celebrations, award nights, and
                                 brand-led events.</span>
                         </div>
                     </div>
@@ -687,11 +697,11 @@
                         <img src="images/kature-07.jpg" alt="Pink floral haldi or wedding ceremony decor"
                             loading="lazy">
                         <div class="portfolio__card-overlay">
-                            <span class="portfolio__tag">Wedding</span>
-                            <h4 class="portfolio__card-title">Floral Ceremony Styling</h4>
-                            <p class="portfolio__card-meta">Soft tonal florals and crafted seating details for intimate
+                            <span class="portfolio__tag" data-i18n="portfolio.card3.tag">Wedding</span>
+                            <h4 class="portfolio__card-title" data-i18n="portfolio.card3.title">Floral Ceremony Styling</h4>
+                            <p class="portfolio__card-meta" data-i18n="portfolio.card3.meta">Soft tonal florals and crafted seating details for intimate
                                 rituals and daytime events.</p>
-                            <span class="portfolio__toggle-hint">Suited to haldi, mehendi, engagement, and welcome
+                            <span class="portfolio__toggle-hint" data-i18n="portfolio.card3.hint">Suited to haldi, mehendi, engagement, and welcome
                                 experiences.</span>
                         </div>
                     </div>
@@ -702,11 +712,11 @@
                         <img src="images/kature-05.jpg"
                             alt="Outdoor wedding stage with hanging white florals and elegant seating" loading="lazy">
                         <div class="portfolio__card-overlay">
-                            <span class="portfolio__tag">Outdoor Event</span>
-                            <h4 class="portfolio__card-title">Open-Air Celebration Stage</h4>
-                            <p class="portfolio__card-meta">Clean architecture, suspended florals, and elevated seating
+                            <span class="portfolio__tag" data-i18n="portfolio.card4.tag">Outdoor Event</span>
+                            <h4 class="portfolio__card-title" data-i18n="portfolio.card4.title">Open-Air Celebration Stage</h4>
+                            <p class="portfolio__card-meta" data-i18n="portfolio.card4.meta">Clean architecture, suspended florals, and elevated seating
                                 for destination-style setups.</p>
-                            <span class="portfolio__toggle-hint">Designed for lawns, resort venues, and open-air wedding
+                            <span class="portfolio__toggle-hint" data-i18n="portfolio.card4.hint">Designed for lawns, resort venues, and open-air wedding
                                 functions.</span>
                         </div>
                     </div>
@@ -717,11 +727,11 @@
                         <img src="images/kature-01.jpg"
                             alt="Luxury event venue with illuminated flooring and floral dining tables" loading="lazy">
                         <div class="portfolio__card-overlay">
-                            <span class="portfolio__tag">Corporate</span>
-                            <h4 class="portfolio__card-title">Premium Dining-Led Venue</h4>
-                            <p class="portfolio__card-meta">An experience-led setup where lighting, floral styling, and
+                            <span class="portfolio__tag" data-i18n="portfolio.card5.tag">Corporate</span>
+                            <h4 class="portfolio__card-title" data-i18n="portfolio.card5.title">Premium Dining-Led Venue</h4>
+                            <p class="portfolio__card-meta" data-i18n="portfolio.card5.meta">An experience-led setup where lighting, floral styling, and
                                 seating composition do the storytelling.</p>
-                            <span class="portfolio__toggle-hint">Best suited to gala dinners, launches, and premium
+                            <span class="portfolio__toggle-hint" data-i18n="portfolio.card5.hint">Best suited to gala dinners, launches, and premium
                                 private events.</span>
                         </div>
                     </div>
@@ -732,11 +742,11 @@
                         <img src="images/kature-02.jpg"
                             alt="Large luxury event hall with chandeliers and lounge seating" loading="lazy">
                         <div class="portfolio__card-overlay">
-                            <span class="portfolio__tag">Outdoor Event</span>
-                            <h4 class="portfolio__card-title">Guest-Ready Venue Transformation</h4>
-                            <p class="portfolio__card-meta">Large-format venue styling that still feels luxurious,
+                            <span class="portfolio__tag" data-i18n="portfolio.card6.tag">Outdoor Event</span>
+                            <h4 class="portfolio__card-title" data-i18n="portfolio.card6.title">Guest-Ready Venue Transformation</h4>
+                            <p class="portfolio__card-meta" data-i18n="portfolio.card6.meta">Large-format venue styling that still feels luxurious,
                                 comfortable, and visually cohesive.</p>
-                            <span class="portfolio__toggle-hint">Built for high-capacity functions with premium guest
+                            <span class="portfolio__toggle-hint" data-i18n="portfolio.card6.hint">Built for high-capacity functions with premium guest
                                 expectations.</span>
                         </div>
                     </div>
@@ -747,11 +757,11 @@
                         <img src="images/kature-04.jpg" alt="Luxury wedding hall dining setup with chandeliers"
                             loading="lazy">
                         <div class="portfolio__card-overlay">
-                            <span class="portfolio__tag">Wedding</span>
-                            <h4 class="portfolio__card-title">Reception Dining Experience</h4>
-                            <p class="portfolio__card-meta">Layered seating, floral centerpieces, and warm lighting that
+                            <span class="portfolio__tag" data-i18n="portfolio.card7.tag">Wedding</span>
+                            <h4 class="portfolio__card-title" data-i18n="portfolio.card7.title">Reception Dining Experience</h4>
+                            <p class="portfolio__card-meta" data-i18n="portfolio.card7.meta">Layered seating, floral centerpieces, and warm lighting that
                                 elevate the guest mood instantly.</p>
-                            <span class="portfolio__toggle-hint">Created for luxurious receptions and
+                            <span class="portfolio__toggle-hint" data-i18n="portfolio.card7.hint">Created for luxurious receptions and
                                 hospitality-forward wedding evenings.</span>
                         </div>
                     </div>
@@ -762,11 +772,11 @@
                         <img src="images/kature-06.jpg" alt="Lighting-focused event hall with stage and banquet seating"
                             loading="lazy">
                         <div class="portfolio__card-overlay">
-                            <span class="portfolio__tag">Corporate</span>
-                            <h4 class="portfolio__card-title">Large-Format Event Production</h4>
-                            <p class="portfolio__card-meta">Stage presence, technical layering, and seating logic
+                            <span class="portfolio__tag" data-i18n="portfolio.card8.tag">Corporate</span>
+                            <h4 class="portfolio__card-title" data-i18n="portfolio.card8.title">Large-Format Event Production</h4>
+                            <p class="portfolio__card-meta" data-i18n="portfolio.card8.meta">Stage presence, technical layering, and seating logic
                                 combined for high-energy guest experiences.</p>
-                            <span class="portfolio__toggle-hint">Focused on launches, entertainment-led events, and
+                            <span class="portfolio__toggle-hint" data-i18n="portfolio.card8.hint">Focused on launches, entertainment-led events, and
                                 production-heavy gatherings.</span>
                         </div>
                     </div>
@@ -778,11 +788,11 @@
                             alt="Elegant venue setup with floral arrangements and reflective dance floor"
                             loading="lazy">
                         <div class="portfolio__card-overlay">
-                            <span class="portfolio__tag">Outdoor Event</span>
-                            <h4 class="portfolio__card-title">Destination Reception Styling</h4>
-                            <p class="portfolio__card-meta">A polished blend of dining, lounge rhythm, and visual drama
+                            <span class="portfolio__tag" data-i18n="portfolio.card9.tag">Outdoor Event</span>
+                            <h4 class="portfolio__card-title" data-i18n="portfolio.card9.title">Destination Reception Styling</h4>
+                            <p class="portfolio__card-meta" data-i18n="portfolio.card9.meta">A polished blend of dining, lounge rhythm, and visual drama
                                 for destination-ready celebrations.</p>
-                            <span class="portfolio__toggle-hint">A strong fit for resort events, premium social
+                            <span class="portfolio__toggle-hint" data-i18n="portfolio.card9.hint">A strong fit for resort events, premium social
                                 gatherings, and outdoor receptions.</span>
                         </div>
                     </div>
@@ -794,10 +804,10 @@
     <section class="image-break section">
         <div class="image-break__visual">
             <div class="image-break__overlay">
-                <p class="section-eyebrow">Signature Atmosphere</p>
-                <h2 class="section-heading">Every space we touch is designed to feel like an occasion worth remembering.
+                <p class="section-eyebrow" data-i18n="imagebreak.eyebrow">Signature Atmosphere</p>
+                <h2 class="section-heading" data-i18n="imagebreak.heading">Every space we touch is designed to feel like an occasion worth remembering.
                 </h2>
-                <p>From first light to final guest departure, Kature brings a sense of grandeur, warmth, and precision
+                <p data-i18n="imagebreak.desc">From first light to final guest departure, Kature brings a sense of grandeur, warmth, and precision
                     to every environment we work in.</p>
             </div>
         </div>
@@ -805,30 +815,30 @@
 
     <section id="testimonials" class="testimonials section">
         <div class="container">
-            <p class="section-eyebrow reveal">Why Choose Kature</p>
-            <h2 class="section-heading reveal">What clients are really looking for when they hire a luxury event partner
+            <p class="section-eyebrow reveal" data-i18n="testimonials.eyebrow">Why Choose Kature</p>
+            <h2 class="section-heading reveal" data-i18n="testimonials.heading">What clients are really looking for when they hire a luxury event partner
             </h2>
 
             <div class="testimonials__slider">
                 <div class="testimonials__track" id="testimonialsTrack">
                     <div class="testimonial__card">
-                        <div class="testimonial__stars">5 Star Experience</div>
-                        <blockquote class="testimonial__quote">
+                        <div class="testimonial__stars" data-i18n="testimonials.card1.stars">5 Star Experience</div>
+                        <blockquote class="testimonial__quote" data-i18n="testimonials.card1.quote">
                             "Kature transformed our venue into something breathtaking. The stage styling, floral
                             detailing,
                             and overall atmosphere felt luxurious from the first guest arrival to the final dance."
                         </blockquote>
                         <div class="testimonial__author">
                             <div class="testimonial__author-info">
-                                <strong>Rhea & Arjun</strong>
-                                <span>Wedding at Yash Lawns, Pune</span>
+                                <strong data-i18n="testimonials.card1.author">Rhea & Arjun</strong>
+                                <span data-i18n="testimonials.card1.location">Wedding at Yash Lawns, Pune</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="testimonial__card">
-                        <div class="testimonial__stars">5 Star Experience</div>
-                        <blockquote class="testimonial__quote">
+                        <div class="testimonial__stars" data-i18n="testimonials.card2.stars">5 Star Experience</div>
+                        <blockquote class="testimonial__quote" data-i18n="testimonials.card2.quote">
                             "What impressed us most was how beautifully everything came together without any stress on
                             our side.
                             The decor looked elegant, the guest flow felt seamless, and the execution was extremely
@@ -836,23 +846,23 @@
                         </blockquote>
                         <div class="testimonial__author">
                             <div class="testimonial__author-info">
-                                <strong>Meenal Shah</strong>
-                                <span>Destination Wedding, Lonavala</span>
+                                <strong data-i18n="testimonials.card2.author">Meenal Shah</strong>
+                                <span data-i18n="testimonials.card2.location">Destination Wedding, Lonavala</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="testimonial__card">
-                        <div class="testimonial__stars">5 Star Experience</div>
-                        <blockquote class="testimonial__quote">
+                        <div class="testimonial__stars" data-i18n="testimonials.card3.stars">5 Star Experience</div>
+                        <blockquote class="testimonial__quote" data-i18n="testimonials.card3.quote">
                             "From the large-format setup to the finer decor details, Kature handled the event with real
                             confidence.
                             The venue felt premium, guest-ready, and visually striking throughout the evening."
                         </blockquote>
                         <div class="testimonial__author">
                             <div class="testimonial__author-info">
-                                <strong>Corporate Events Team</strong>
-                                <span>Annual Gala, Mumbai</span>
+                                <strong data-i18n="testimonials.card3.author">Corporate Events Team</strong>
+                                <span data-i18n="testimonials.card3.location">Annual Gala, Mumbai</span>
                             </div>
                         </div>
                     </div>
@@ -885,14 +895,14 @@
         <div class="container">
             <div class="reel__grid">
                 <div class="reel__copy reveal">
-                    <p class="section-eyebrow">Event Films</p>
-                    <h2 class="section-heading">See the atmosphere we create, before we create yours.</h2>
-                    <p class="section-subtitle">
+                    <p class="section-eyebrow" data-i18n="reel.eyebrow">Event Films</p>
+                    <h2 class="section-heading" data-i18n="reel.heading">See the atmosphere we create, before we create yours.</h2>
+                    <p class="section-subtitle" data-i18n="reel.desc">
                         This reel captures a wedding we recently had the privilege of decorating — the staging, the
                         florals, the guest environment, and the moments that made it memorable. Every detail you see
                         was designed, sourced, and executed by the Kature team.
                     </p>
-                    <a href="#contact" class="btn btn--primary">Book A Consultation</a>
+                    <a href="#contact" class="btn btn--primary" data-i18n="reel.cta">Book A Consultation</a>
                 </div>
                 <div class="reel__placeholder reveal" style="--reveal-delay: 0.15s;">
                     <div class="reel__video-shell">
@@ -911,20 +921,20 @@
 
     <section id="faq" class="faq section">
         <div class="container">
-            <p class="section-eyebrow reveal">Client Questions</p>
-            <h2 class="section-heading reveal">Frequently asked before booking</h2>
+            <p class="section-eyebrow reveal" data-i18n="faq.eyebrow">Client Questions</p>
+            <h2 class="section-heading reveal" data-i18n="faq.heading">Frequently asked before booking</h2>
 
             <div class="faq__grid">
                 <div class="faq__item reveal">
                     <button class="faq__question" aria-expanded="false">
-                        <span>What types of events does Kature cater to?</span>
+                        <span data-i18n="faq.q1.question">What types of events does Kature cater to?</span>
                         <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                     </button>
                     <div class="faq__answer">
-                        <p>We specialize in luxury weddings, social celebrations, corporate events, exhibitions,
+                        <p data-i18n="faq.q1.answer">We specialize in luxury weddings, social celebrations, corporate events, exhibitions,
                             outdoor functions, and large-scale guest experiences. Our infrastructure supports events
                             from 200 to 5,000+
                             guests.</p>
@@ -933,14 +943,14 @@
 
                 <div class="faq__item reveal" style="--reveal-delay: 0.05s;">
                     <button class="faq__question" aria-expanded="false">
-                        <span>Can Kature handle both decor and on-ground setup?</span>
+                        <span data-i18n="faq.q2.question">Can Kature handle both decor and on-ground setup?</span>
                         <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                     </button>
                     <div class="faq__answer">
-                        <p>Yes. Kature can be presented as a single partner for decor styling, decor execution,
+                        <p data-i18n="faq.q2.answer">Yes. Kature can be presented as a single partner for decor styling, decor execution,
                             structural setup, and venue transformation, which is a strong advantage for clients managing
                             high-value events.</p>
                     </div>
@@ -948,14 +958,14 @@
 
                 <div class="faq__item reveal" style="--reveal-delay: 0.1s;">
                     <button class="faq__question" aria-expanded="false">
-                        <span>What infrastructure is available in-house?</span>
+                        <span data-i18n="faq.q3.question">What infrastructure is available in-house?</span>
                         <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                     </button>
                     <div class="faq__answer">
-                        <p>Core in-house capability includes German hangars, aluminium roof truss systems, cooling
+                        <p data-i18n="faq.q3.answer">Core in-house capability includes German hangars, aluminium roof truss systems, cooling
                             support,
                             modular flooring, and pagoda setups. This gives stronger control over timelines, venue build
                             quality, and guest comfort.</p>
@@ -964,14 +974,14 @@
 
                 <div class="faq__item reveal" style="--reveal-delay: 0.15s;">
                     <button class="faq__question" aria-expanded="false">
-                        <span>Can you transform an empty ground into a premium venue?</span>
+                        <span data-i18n="faq.q4.question">Can you transform an empty ground into a premium venue?</span>
                         <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                     </button>
                     <div class="faq__answer">
-                        <p>Absolutely. Open grounds can be transformed into fully planned venues with flooring,
+                        <p data-i18n="faq.q4.answer">Absolutely. Open grounds can be transformed into fully planned venues with flooring,
                             lighting,
                             climate support, guest zoning, and structural systems while still maintaining a luxury
                             presentation.</p>
@@ -980,14 +990,14 @@
 
                 <div class="faq__item reveal" style="--reveal-delay: 0.2s;">
                     <button class="faq__question" aria-expanded="false">
-                        <span>Which regions can Kature serve?</span>
+                        <span data-i18n="faq.q5.question">Which regions can Kature serve?</span>
                         <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                     </button>
                     <div class="faq__answer">
-                        <p>Based in Pune, the brand can be positioned for work across Maharashtra and destination
+                        <p data-i18n="faq.q5.answer">Based in Pune, the brand can be positioned for work across Maharashtra and destination
                             venues,
                             subject to project scale, logistics, and planning requirements.</p>
                     </div>
@@ -995,14 +1005,14 @@
 
                 <div class="faq__item reveal" style="--reveal-delay: 0.25s;">
                     <button class="faq__question" aria-expanded="false">
-                        <span>How far in advance should clients book?</span>
+                        <span data-i18n="faq.q6.question">How far in advance should clients book?</span>
                         <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                     </button>
                     <div class="faq__answer">
-                        <p>For weddings and high-detail events, booking 3 to 6 months in advance is ideal. For corporate
+                        <p data-i18n="faq.q6.answer">For weddings and high-detail events, booking 3 to 6 months in advance is ideal. For corporate
                             and infrastructure-led events, 4 to 8 weeks is typically sufficient.</p>
                     </div>
                 </div>
@@ -1014,17 +1024,17 @@
         <div class="container">
             <div class="consult__card reveal">
                 <div class="consult__copy">
-                    <p class="section-eyebrow">Quick Consultation</p>
-                    <h2 class="section-heading">Prefer a faster conversation?</h2>
-                    <p>
+                    <p class="section-eyebrow" data-i18n="consult.eyebrow">Quick Consultation</p>
+                    <h2 class="section-heading" data-i18n="consult.heading">Prefer a faster conversation?</h2>
+                    <p data-i18n="consult.desc">
                         This section can eventually become a WhatsApp click-to-chat, call request, or instant
                         consultation CTA.
                     </p>
                 </div>
                 <div class="consult__actions">
-                    <a href="#contact" class="btn btn--primary">Discuss Your Event Brief</a>
+                    <a href="#contact" class="btn btn--primary" data-i18n="consult.cta_discuss">Discuss Your Event Brief</a>
                     <a href="https://wa.me/919876543210?text=Hello%20Kature%20Decorators%2C%20I%20would%20like%20a%20quick%20consultation%20about%20my%20event."
-                        target="_blank" rel="noopener noreferrer" class="btn btn--outline consult__whatsapp">Open
+                        target="_blank" rel="noopener noreferrer" class="btn btn--outline consult__whatsapp" data-i18n="consult.cta_whatsapp">Open
                         WhatsApp Consultation</a>
                 </div>
             </div>
@@ -1035,16 +1045,16 @@
         <div class="container">
             <div class="booking__grid">
                 <div class="booking__copy reveal">
-                    <p class="section-eyebrow">Schedule A Meeting</p>
-                    <h2 class="section-heading">Let us find time to talk about your celebration.</h2>
-                    <p class="section-subtitle">
+                    <p class="section-eyebrow" data-i18n="booking.eyebrow">Schedule A Meeting</p>
+                    <h2 class="section-heading" data-i18n="booking.heading">Let us find time to talk about your celebration.</h2>
+                    <p class="section-subtitle" data-i18n="booking.subtitle">
                         Choose a date and a preferred time slot below. Once we confirm your request through the form,
                         our team will reach out to lock in the consultation and walk you through the planning process.
                     </p>
                 </div>
                 <div class="booking__card reveal" style="--reveal-delay: 0.15s;">
                     <div class="form-group">
-                        <label for="meetingDate">Preferred Date</label>
+                        <label for="meetingDate" data-i18n="booking.date_label">Preferred Date</label>
                         <input type="date" id="meetingDate" name="meetingDate">
                     </div>
                     <div class="booking__slots">
@@ -1056,7 +1066,7 @@
                     <div class="booking__summary" id="bookingSummary">
                         Tentative slot selected: 10:00 AM
                     </div>
-                    <a href="#contact" class="btn btn--primary btn--full">Request This Meeting</a>
+                    <a href="#contact" class="btn btn--primary btn--full" data-i18n="booking.cta">Request This Meeting</a>
                 </div>
             </div>
         </div>
@@ -1066,9 +1076,9 @@
         <div class="container">
             <div class="contact__grid">
                 <div class="contact__info reveal">
-                    <p class="section-eyebrow">Get In Touch</p>
-                    <h2 class="section-heading">Let's shape your next <span class="text-gold">celebration</span></h2>
-                    <p class="contact__desc">
+                    <p class="section-eyebrow" data-i18n="contact.eyebrow">Get In Touch</p>
+                    <h2 class="section-heading" data-i18n="contact.heading">Let's shape your next <span class="text-gold">celebration</span></h2>
+                    <p class="contact__desc" data-i18n="contact.desc">
                         Share your event type, date, venue, and scale. Our team will help shape a decor and
                         infrastructure
                         approach that feels aligned with your celebration and guest experience goals.
@@ -1110,7 +1120,7 @@
                                     <path d="M5 2H2a1 1 0 00-1 1v8a1 1 0 001 1h8a1 1 0 001-1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
                                     <path d="M8 1h4v4M12 1L6.5 6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                Open in Google Maps
+                                <span data-i18n="contact.maps_link">Open in Google Maps</span>
                             </a>
                         </div>
                     </div>
@@ -1119,53 +1129,53 @@
                 <div class="contact__form-wrapper reveal" style="--reveal-delay: 0.2s;">
                     <form id="inquiryForm" class="contact__form" novalidate>
                         <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your full name" required>
-                            <span class="form-error" id="nameError">Please enter your name</span>
+                            <label for="name" data-i18n="contact.form.name_label">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your full name" required data-i18n-placeholder="contact.form.name_placeholder">
+                            <span class="form-error" id="nameError" data-i18n="contact.form.name_error">Please enter your name</span>
                         </div>
                         <div class="form-group">
-                            <label for="eventType">Event Type</label>
+                            <label for="eventType" data-i18n="contact.form.event_type_label">Event Type</label>
                             <select id="eventType" name="eventType" required>
-                                <option value="" disabled selected>Select event type</option>
-                                <option value="wedding">Wedding</option>
-                                <option value="social">Social Event</option>
-                                <option value="corporate">Corporate</option>
-                                <option value="destination">Destination Event</option>
-                                <option value="other">Other</option>
+                                <option value="" disabled selected data-i18n="contact.form.event_type_default">Select event type</option>
+                                <option value="wedding" data-i18n="contact.form.event_type_wedding">Wedding</option>
+                                <option value="social" data-i18n="contact.form.event_type_social">Social Event</option>
+                                <option value="corporate" data-i18n="contact.form.event_type_corporate">Corporate</option>
+                                <option value="destination" data-i18n="contact.form.event_type_destination">Destination Event</option>
+                                <option value="other" data-i18n="contact.form.event_type_other">Other</option>
                             </select>
-                            <span class="form-error" id="eventTypeError">Please select an event type</span>
+                            <span class="form-error" id="eventTypeError" data-i18n="contact.form.event_type_error">Please select an event type</span>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="eventDate">Event Date</label>
+                                <label for="eventDate" data-i18n="contact.form.event_date_label">Event Date</label>
                                 <input type="date" id="eventDate" name="eventDate" required>
-                                <span class="form-error" id="eventDateError">Please select a date</span>
+                                <span class="form-error" id="eventDateError" data-i18n="contact.form.event_date_error">Please select a date</span>
                             </div>
                             <div class="form-group">
-                                <label for="location">Location</label>
+                                <label for="location" data-i18n="contact.form.location_label">Location</label>
                                 <input type="text" id="location" name="location" placeholder="Event city or venue"
-                                    required>
-                                <span class="form-error" id="locationError">Please enter a location</span>
+                                    required data-i18n-placeholder="contact.form.location_placeholder">
+                                <span class="form-error" id="locationError" data-i18n="contact.form.location_error">Please enter a location</span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="budget">Budget Range</label>
+                            <label for="budget" data-i18n="contact.form.budget_label">Budget Range</label>
                             <select id="budget" name="budget" required>
-                                <option value="" disabled selected>Select budget range</option>
-                                <option value="under-5l">Under Rs. 5 Lakh</option>
-                                <option value="5l-20l">Rs. 5 Lakh to Rs. 20 Lakh</option>
-                                <option value="20l-50l">Rs. 20 Lakh to Rs. 50 Lakh</option>
-                                <option value="50l-plus">Rs. 50 Lakh+</option>
+                                <option value="" disabled selected data-i18n="contact.form.budget_default">Select budget range</option>
+                                <option value="under-5l" data-i18n="contact.form.budget_under5l">Under Rs. 5 Lakh</option>
+                                <option value="5l-20l" data-i18n="contact.form.budget_5_20l">Rs. 5 Lakh to Rs. 20 Lakh</option>
+                                <option value="20l-50l" data-i18n="contact.form.budget_20_50l">Rs. 20 Lakh to Rs. 50 Lakh</option>
+                                <option value="50l-plus" data-i18n="contact.form.budget_50l_plus">Rs. 50 Lakh+</option>
                             </select>
-                            <span class="form-error" id="budgetError">Please select a budget range</span>
+                            <span class="form-error" id="budgetError" data-i18n="contact.form.budget_error">Please select a budget range</span>
                         </div>
                         <div class="form-group">
-                            <label for="message">Tell Us About Your Vision</label>
+                            <label for="message" data-i18n="contact.form.message_label">Tell Us About Your Vision</label>
                             <textarea id="message" name="message" rows="4"
-                                placeholder="Describe the mood, scale, venue type, and guest experience you have in mind."></textarea>
+                                placeholder="Describe the mood, scale, venue type, and guest experience you have in mind." data-i18n-placeholder="contact.form.message_placeholder"></textarea>
                         </div>
                         <button type="submit" class="btn btn--primary btn--full" id="submitBtn">
-                            <span>Share Event Brief</span>
+                            <span data-i18n="contact.form.submit">Share Event Brief</span>
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                                 <path d="M3 9h12M11 5l4 4-4 4" stroke="currentColor" stroke-width="1.5"
                                     stroke-linecap="round" stroke-linejoin="round" />
@@ -1177,7 +1187,7 @@
                                 <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" />
                             </svg>
-                            <p>Thank you. This inquiry flow can now be connected to email, WhatsApp, or a CRM.</p>
+                            <p data-i18n="contact.form.success">Thank you. This inquiry flow can now be connected to email, WhatsApp, or a CRM.</p>
                         </div>
                     </form>
                 </div>
@@ -1188,8 +1198,8 @@
     <section class="instagram section">
         <div class="container">
             <div class="instagram__intro reveal">
-                <p class="section-eyebrow">Instagram</p>
-                <h2 class="section-heading">Follow our work, one celebration at a time.</h2>
+                <p class="section-eyebrow" data-i18n="instagram.eyebrow">Instagram</p>
+                <h2 class="section-heading" data-i18n="instagram.heading">Follow our work, one celebration at a time.</h2>
             </div>
             <div class="instagram__embed reveal">
                 <div class="instagram__profile">
@@ -1201,21 +1211,21 @@
                     <div class="instagram__profile-head">
                         <img src="logo.png" alt="Kature Decorators Instagram profile" class="instagram__avatar">
                         <div>
-                            <strong>@kature_decorators</strong>
-                            <span>Luxury event decorators | Pune</span>
+                            <strong data-i18n="instagram.handle">@kature_decorators</strong>
+                            <span data-i18n="instagram.tagline">Luxury event decorators | Pune</span>
                         </div>
                     </div>
                     <div class="instagram__meta">
-                        <span>Posts 480+</span>
-                        <span>Decor reels</span>
-                        <span>Venue transformations</span>
+                        <span data-i18n="instagram.meta1">Posts 480+</span>
+                        <span data-i18n="instagram.meta2">Decor reels</span>
+                        <span data-i18n="instagram.meta3">Venue transformations</span>
                     </div>
-                    <p>
+                    <p data-i18n="instagram.desc">
                         Follow the brand for wedding decor details, venue transformations, reception styling,
                         and on-ground event execution snapshots.
                     </p>
                     <a href="https://www.instagram.com/kature_decorators/" target="_blank" rel="noopener noreferrer"
-                        class="btn btn--primary">Open Instagram Profile</a>
+                        class="btn btn--primary" data-i18n="instagram.cta">Open Instagram Profile</a>
                 </div>
                 <div class="instagram__grid">
                     <div class="instagram__tile reveal">
@@ -1248,31 +1258,31 @@
                     <a href="#" class="navbar__logo">
                         <img src="logo.png" alt="Kature Decorators" class="navbar__logo-img footer__logo-img">
                     </a>
-                    <p class="footer__tagline">
+                    <p class="footer__tagline" data-i18n="footer.tagline">
                         Luxury event environments and infrastructure crafted for celebrations that deserve polish,
                         scale, and calm execution.
                     </p>
                 </div>
                 <div class="footer__nav">
-                    <h4 class="footer__heading">Navigate</h4>
-                    <a href="#about">About</a>
-                    <a href="#services">Services</a>
-                    <a href="#inventory">Infrastructure</a>
-                    <a href="#portfolio">Portfolio</a>
-                    <a href="#testimonials">Why Kature</a>
-                    <a href="#faq">FAQ</a>
-                    <a href="#contact">Contact</a>
+                    <h4 class="footer__heading" data-i18n="footer.nav_heading">Navigate</h4>
+                    <a href="#about" data-i18n="footer.nav_about">About</a>
+                    <a href="#services" data-i18n="footer.nav_services">Services</a>
+                    <a href="#inventory" data-i18n="footer.nav_infrastructure">Infrastructure</a>
+                    <a href="#portfolio" data-i18n="footer.nav_portfolio">Portfolio</a>
+                    <a href="#testimonials" data-i18n="footer.nav_why_kature">Why Kature</a>
+                    <a href="#faq" data-i18n="footer.nav_faq">FAQ</a>
+                    <a href="#contact" data-i18n="footer.nav_contact">Contact</a>
                 </div>
                 <div class="footer__nav">
-                    <h4 class="footer__heading">Focus Areas</h4>
-                    <a href="#services">Wedding Decor</a>
-                    <a href="#services">Stage And Mandap</a>
-                    <a href="#inventory">German Hangars</a>
-                    <a href="#inventory">Truss Systems</a>
-                    <a href="#services">Venue Styling</a>
+                    <h4 class="footer__heading" data-i18n="footer.focus_heading">Focus Areas</h4>
+                    <a href="#services" data-i18n="footer.focus_wedding_decor">Wedding Decor</a>
+                    <a href="#services" data-i18n="footer.focus_stage_mandap">Stage And Mandap</a>
+                    <a href="#inventory" data-i18n="footer.focus_hangars">German Hangars</a>
+                    <a href="#inventory" data-i18n="footer.focus_truss">Truss Systems</a>
+                    <a href="#services" data-i18n="footer.focus_venue">Venue Styling</a>
                 </div>
                 <div class="footer__social">
-                    <h4 class="footer__heading">Channels</h4>
+                    <h4 class="footer__heading" data-i18n="footer.channels_heading">Channels</h4>
                     <div class="footer__social-icons">
                         <a href="#" aria-label="Instagram" class="social-icon">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -1308,8 +1318,8 @@
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>&copy; 2026 Kature Decorators. All rights reserved.</p>
-                <p>Pune's most trusted wedding decorators for 30+ years.</p>
+                <p data-i18n="footer.copyright">&copy; 2026 Kature Decorators. All rights reserved.</p>
+                <p data-i18n="footer.trust_line">Pune's most trusted wedding decorators for 30+ years.</p>
             </div>
         </div>
     </footer>

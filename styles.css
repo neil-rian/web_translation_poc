@@ -3,6 +3,18 @@
    Complete Stylesheet
    ============================================================ */
 
+/* === INDIC SCRIPT FIX ===
+   Devanagari (hi, mr) and Bengali (bn), Tamil (ta) scripts use connected
+   glyphs. letter-spacing breaks the headline (shirorekha) and detaches
+   vowel marks. Reset to 0 for these languages.
+   ============================================================ */
+:lang(hi) *,
+:lang(mr) *,
+:lang(bn) *,
+:lang(ta) * {
+    letter-spacing: 0 !important;
+}
+
 /* === ROOT VARIABLES === */
 :root {
     /* Colors */
@@ -349,6 +361,48 @@ button, input, select, textarea {
 
 .navbar__hamburger.active .hamburger-line:nth-child(3) {
     transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* === LANGUAGE SWITCHER === */
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    margin-left: 4px;
+    position: relative;
+}
+
+.lang-switcher__select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+    padding: 4px 18px 4px 0;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+    background-image: url("data:image/svg+xml,%3Csvg width='8' height='5' viewBox='0 0 8 5' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%235f647a' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0 center;
+}
+
+.lang-switcher__select:hover {
+    color: var(--color-text);
+}
+
+.lang-switcher__select:focus {
+    outline: none;
+    color: var(--color-gold);
+}
+
+.lang-switcher__select option {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-text);
+    background: var(--color-bg-card);
+    padding: 6px 12px;
 }
 
 
@@ -1381,6 +1435,22 @@ button, input, select, textarea {
 
     .nav-link {
         font-size: 1.1rem;
+    }
+
+    .lang-switcher {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+
+    .lang-switcher__select {
+        color: rgba(255, 248, 246, 0.7);
+        background-image: url("data:image/svg+xml,%3Csvg width='8' height='5' viewBox='0 0 8 5' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l3 3 3-3' stroke='rgba(255,248,246,0.7)' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        font-size: 1.1rem;
+        padding: 4px 20px 4px 0;
+    }
+
+    .lang-switcher__select:hover {
+        color: rgba(255, 248, 246, 1);
     }
 
     /* Hero */

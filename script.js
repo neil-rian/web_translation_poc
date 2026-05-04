@@ -455,8 +455,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const activeSlot = document.querySelector('.booking__slot.active');
         const slotText = activeSlot ? activeSlot.textContent.trim() : 'No slot selected';
-        const dateText = meetingDate && meetingDate.value ? meetingDate.value : 'your chosen date';
-        bookingSummary.textContent = `Tentative slot selected: ${slotText} on ${dateText}`;
+        const dateText = meetingDate && meetingDate.value ? meetingDate.value : '';
+
+        if (typeof I18n !== 'undefined') {
+            const template = dateText
+                ? I18n.t('booking.summary_template')
+                : I18n.t('booking.summary_no_date');
+            bookingSummary.textContent = template
+                .replace('{slot}', slotText)
+                .replace('{date}', dateText || 'your chosen date');
+        } else {
+            bookingSummary.textContent = `Tentative slot selected: ${slotText} on ${dateText || 'your chosen date'}`;
+        }
     }
 
     bookingSlots.forEach((slot) => {
@@ -472,6 +482,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     updateBookingSummary();
+
+    // Update booking summary when language changes
+    window.addEventListener('languageChanged', updateBookingSummary);
 
     // ============================
     // FAQ - Accordion
