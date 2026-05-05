@@ -1,7 +1,9 @@
 /* ============================================================
    SCRAPE & TRANSLATE — POC
    Extracts [data-i18n] text, diffs against en.json,
-   sends only changed keys to Google Translate API via backend.
+   sends only changed keys to GPT-4o-mini via backend.
+   Runs automatically on every page load (silently).
+   Manual button triggers the full modal UI.
    ============================================================ */
 
 const Scraper = (() => {
@@ -44,6 +46,68 @@ const Scraper = (() => {
         }
         return changed;
     }
+
+    // ─── Toast notification (for auto-scan) ───────────────────────
+
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `scrape-toast scrape-toast--${type}`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        requestAnimationFrame(() => toast.classList.add('active'));
+        setTimeout(() => {
+            toast.classList.remove('active');
+            setTimeout(() => toast.remove(), 300);
+        }, 4000);
+    }
+
+    // ─── Silent auto-scan (runs on page load) ─────────────────────
+
+    async function autoScan() {
+        try {
+            const currentTexts = await extractTexts();
+            const existingEN = await fetchExistingEN();
+            const changed = diffTexts(currentTexts, existingEN);
+            const changedCount = Object.keys(changed).length;
+
+            if (changedCount === 0) return; // nothing to do
+
+            // Save updated en.json (merge current page keys into existing)
+            const merged = { ...existingEN, ...currentTexts };
+            await fetch('/api/save-source', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ texts: merged })
+            });
+
+            // Translate only changed keys
+            const response = await fetch('/api/translate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ texts: changed, targetLangs: TARGET_LANGS })
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+                showToast(`Translation error: ${data.error}`, 'error');
+                return;
+            }
+
+            const successCount = data.results.filter(r => r.success).length;
+            showToast(`${changedCount} key(s) translated to ${successCount} language(s)`);
+
+            // Refresh current language to pick up new translations
+            if (typeof I18n !== 'undefined') {
+                I18n.clearCache();
+                I18n.setLanguage(I18n.getCurrentLang());
+            }
+        } catch (err) {
+            console.error('[Scraper] Auto-scan failed:', err.message);
+        }
+    }
+
+    // ─── Modal UI (for manual trigger) ────────────────────────────
 
     function createModal() {
         const overlay = document.createElement('div');
@@ -127,13 +191,14 @@ const Scraper = (() => {
             addLog(modal.log, `  + ${key}`);
         }
 
-        // Step 3: Save updated en.json
+        // Step 3: Save updated en.json (merge)
         setProgress(modal, 25, 'Saving updated English content...');
         try {
+            const merged = { ...existingEN, ...currentTexts };
             await fetch('/api/save-source', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ texts: currentTexts })
+                body: JSON.stringify({ texts: merged })
             });
             addLog(modal.log, 'English source file updated.', 'success');
         } catch (err) {
@@ -182,7 +247,13 @@ const Scraper = (() => {
         showClose(modal);
     }
 
+    // ─── Init ─────────────────────────────────────────────────────
+
     function init() {
+        // Auto-scan on every page load (silent)
+        autoScan();
+
+        // Manual button still available
         const btn = document.getElementById('scrapeBtn');
         if (btn) {
             btn.addEventListener('click', (e) => {
@@ -192,7 +263,7 @@ const Scraper = (() => {
         }
     }
 
-    return { init };
+    return { init, run, autoScan };
 })();
 
 document.addEventListener('DOMContentLoaded', () => {

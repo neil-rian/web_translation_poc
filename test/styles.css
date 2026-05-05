@@ -4001,3 +4001,39 @@ body::before {
     justify-content: center;
 }
 
+/* ─── Toast (auto-scan feedback) ─────────────────────────── */
+
+.scrape-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: var(--font-body, 'Manrope', sans-serif);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #fff;
+    background: #1a1a2e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.scrape-toast.active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.scrape-toast--success {
+    border-color: rgba(76, 175, 80, 0.4);
+}
+
+.scrape-toast--error {
+    border-color: rgba(244, 67, 54, 0.4);
+    background: #2e1a1a;
+}
+

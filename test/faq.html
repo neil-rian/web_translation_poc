@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Kature Decorators</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="i18n.js"></script>
+</head>
+
+<body>
+    <aside class="floating-actions" aria-label="Quick actions">
+        <a href="https://www.instagram.com/kature_decorators/" target="_blank" rel="noopener noreferrer"
+            class="floating-actions__link floating-actions__link--instagram" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="16" height="16" rx="5" stroke="currentColor" stroke-width="1.5" />
+                <circle cx="10" cy="10" r="3.5" stroke="currentColor" stroke-width="1.5" />
+                <circle cx="14.5" cy="5.5" r="1" fill="currentColor" />
+            </svg>
+        </a>
+        <button id="scrapeBtn" class="floating-actions__link floating-actions__link--scrape"
+            aria-label="Scrape and Translate">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M4 10a6 6 0 0110.5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M16 10a6 6 0 01-10.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M14 3l1 3h-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 17l-1-3h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer"
+            class="floating-actions__link floating-actions__link--whatsapp" aria-label="WhatsApp">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20.52 3.48A11.8 11.8 0 0012.13 0C5.62 0 .32 5.3.32 11.81c0 2.08.54 4.1 1.57 5.87L0 24l6.5-1.84a11.76 11.76 0 005.63 1.43h.01c6.5 0 11.81-5.3 11.81-11.81 0-3.15-1.23-6.11-3.43-8.3z"
+                    fill="currentColor" />
+            </svg>
+        </a>
+    </aside>
+
+    <header id="navbar" class="navbar">
+        <div class="navbar__inner container">
+            <a href="test.html" class="navbar__logo" aria-label="Kature Decorators home">
+                <img src="logo.png" alt="Kature Decorators" class="navbar__logo-img">
+            </a>
+            <nav class="navbar__links" id="navLinks">
+                <a href="test.html#about" class="nav-link" data-i18n="nav.about">About Us</a>
+                <a href="test.html#services" class="nav-link" data-i18n="nav.services">Services</a>
+                <a href="faq.html" class="nav-link" data-i18n="nav.faq">FAQ</a>
+                <a href="test.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+                <div class="lang-switcher">
+                    <select id="langSwitcher" class="lang-switcher__select" aria-label="Select language">
+                        <option value="en">English</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="mr">मराठी</option>
+                        <option value="bn">বাংলা</option>
+                        <option value="ta">தமிழ்</option>
+                    </select>
+                </div>
+            </nav>
+            <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <section id="faq" class="faq section">
+        <div class="container">
+            <p class="section-eyebrow reveal" data-i18n="faq.eyebrow">Client Questions</p>
+            <h2 class="section-heading reveal" data-i18n="faq.heading">Frequently asked before booking</h2>
+            <div class="faq__grid">
+                <div class="faq__item reveal">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q1.question">What types of events does Kature cater to?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.q1.answer">We specialize in luxury weddings, social celebrations, corporate events, exhibitions, outdoor functions, and large-scale guest experiences. Our infrastructure supports events from 200 to 5,000+ guests.</p>
+                    </div>
+                </div>
+                <div class="faq__item reveal" style="--reveal-delay: 0.05s;">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q2.question">Can Kature handle both decor and on-ground setup?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.q2.answer">Yes. Kature can be presented as a single partner for decor styling, decor execution, structural setup, and venue transformation, which is a strong advantage for clients managing high-value events.</p>
+                    </div>
+                </div>
+                <div class="faq__item reveal" style="--reveal-delay: 0.1s;">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q3.question">How far in advance should clients book?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.q3.answer">For weddings and high-detail events, booking 3 to 6 months in advance is ideal. For corporate and infrastructure-led events, 4 to 8 weeks is typically sufficient.</p>
+                    </div>
+                </div>
+                <div class="faq__item reveal" style="--reveal-delay: 0.15s;">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q4.question">Do you handle destination weddings outside Pune?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.q4.answer">Absolutely. We have executed events across India and internationally — from Goa and Rajasthan to Dubai and Thailand. Our logistics team manages end-to-end transportation, setup, and coordination at any venue.</p>
+                    </div>
+                </div>
+                <div class="faq__item reveal" style="--reveal-delay: 0.2s;">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q5.question">What is the typical budget range for your services?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.q5.answer">Our projects range from mid-scale social functions to ultra-premium weddings. We tailor every proposal to the client's vision and scale — share your requirements and we'll provide a detailed, transparent estimate.</p>
+                    </div>
+                </div>
+                <div class="faq__item reveal" style="--reveal-delay: 0.25s;">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q6.question">Can we visit a live setup or past event venue before booking?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.q6.answer">Yes, we encourage site visits. Depending on our event calendar, we can arrange a walkthrough of an active setup or share detailed photo and video documentation from recent projects.</p>
+                    </div>
+                </div>
+                <div class="faq__item reveal" style="--reveal-delay: 0.3s;">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q7.question">Do you provide lighting and sound infrastructure as well?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.q7.answer">Yes. We offer complete event infrastructure including professional lighting design, sound systems, LED walls, and power management — all integrated seamlessly with the decor concept.</p>
+                    </div>
+                </div>
+                <div class="faq__item reveal" style="--reveal-delay: 0.35s;">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q8.question">How do you handle last-minute changes or additions?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.q8.answer">With 55+ years of experience, we're well-prepared for on-the-fly adjustments. Our on-ground team carries backup materials and can adapt layouts, floral arrangements, or lighting within hours of an event.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__bottom">
+                <p data-i18n="footer.copyright">&copy; 2026 Kature Decorators. All rights reserved.</p>
+                <p data-i18n="footer.trust_line">Pune's most trusted wedding decorators for 30+ years.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="scrape.js"></script>
+</body>
+
+</html>

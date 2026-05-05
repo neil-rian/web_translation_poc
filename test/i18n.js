@@ -18,6 +18,7 @@ const I18n = (() => {
     const cache = {};
     let currentLang = 'en';
     let currentDict = {};
+    let originalTitle = '';
 
     function detectLanguage() {
         // 1. URL param ?lang=
@@ -74,6 +75,8 @@ const I18n = (() => {
         document.documentElement.lang = currentLang;
         if (dict['meta.title']) {
             document.title = dict['meta.title'];
+        } else {
+            document.title = originalTitle;
         }
     }
 
@@ -106,6 +109,7 @@ const I18n = (() => {
     }
 
     async function init() {
+        originalTitle = document.title;
         const lang = detectLanguage();
         await setLanguage(lang);
 
