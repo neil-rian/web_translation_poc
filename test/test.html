@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kature Decorators - Translation POC</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="i18n.js"></script>
+</head>
+
+<body>
+    <aside class="floating-actions" aria-label="Quick actions">
+        <a href="https://www.instagram.com/kature_decorators/" target="_blank" rel="noopener noreferrer"
+            class="floating-actions__link floating-actions__link--instagram" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="16" height="16" rx="5" stroke="currentColor" stroke-width="1.5" />
+                <circle cx="10" cy="10" r="3.5" stroke="currentColor" stroke-width="1.5" />
+                <circle cx="14.5" cy="5.5" r="1" fill="currentColor" />
+            </svg>
+        </a>
+        <button id="scrapeBtn" class="floating-actions__link floating-actions__link--scrape"
+            aria-label="Scrape and Translate">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M4 10a6 6 0 0110.5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M16 10a6 6 0 01-10.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M14 3l1 3h-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 17l-1-3h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer"
+            class="floating-actions__link floating-actions__link--whatsapp" aria-label="WhatsApp">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20.52 3.48A11.8 11.8 0 0012.13 0C5.62 0 .32 5.3.32 11.81c0 2.08.54 4.1 1.57 5.87L0 24l6.5-1.84a11.76 11.76 0 005.63 1.43h.01c6.5 0 11.81-5.3 11.81-11.81 0-3.15-1.23-6.11-3.43-8.3z"
+                    fill="currentColor" />
+            </svg>
+        </a>
+    </aside>
+
+    <header id="navbar" class="navbar">
+        <div class="navbar__inner container">
+            <a href="#" class="navbar__logo" aria-label="Kature Decorators home">
+                <img src="logo.png" alt="Kature Decorators" class="navbar__logo-img">
+            </a>
+            <nav class="navbar__links" id="navLinks">
+                <a href="#about" class="nav-link" data-i18n="nav.about">About Us</a>
+                <a href="#services" class="nav-link" data-i18n="nav.services">Services</a>
+                <a href="#faq" class="nav-link" data-i18n="nav.faq">FAQ</a>
+                <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+                <div class="lang-switcher">
+                    <select id="langSwitcher" class="lang-switcher__select" aria-label="Select language">
+                        <option value="en">English</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="mr">मराठी</option>
+                        <option value="bn">বাংলা</option>
+                        <option value="ta">தமிழ்</option>
+                    </select>
+                </div>
+            </nav>
+            <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="hero__parallax-bg"></div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content container">
+            <p class="hero__eyebrow animate-fade-up" data-i18n="hero.eyebrow">Trusted Since 1970 | Award-Winning Event Designers</p>
+            <h1 class="hero__headline animate-fade-up" style="animation-delay: 0.15s;" data-i18n="hero.headline">
+                Where every celebration<br>becomes a masterpiece.
+            </h1>
+            <p class="hero__subheading animate-fade-up" style="animation-delay: 0.3s;" data-i18n="hero.subheading">
+                Kature Decorators designs immersive celebrations, statement stages, refined guest environments,
+                and large-format venue infrastructure for weddings, social functions, and premium events.
+            </p>
+            <div class="hero__ctas animate-fade-up" style="animation-delay: 0.45s;">
+                <a href="#contact" class="btn btn--primary" data-i18n="hero.cta_portfolio">Explore The Portfolio</a>
+                <a href="#contact" class="btn btn--outline" data-i18n="hero.cta_plan">Plan Your Event</a>
+            </div>
+            <div class="hero__facts animate-fade-up" style="animation-delay: 0.52s;">
+                <span data-i18n="hero.fact1">Grand Weddings</span>
+                <span data-i18n="hero.fact2">Worldwide Destination Events</span>
+                <span data-i18n="hero.fact3">Complete Event Infrastructure</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="about__grid">
+                <div class="about__text reveal">
+                    <p class="section-eyebrow" data-i18n="about.eyebrow">Who We Are</p>
+                    <h2 class="section-heading" data-i18n="about.heading">Five decades of turning empty spaces into unforgettable moments</h2>
+                    <p class="about__desc" data-i18n="about.desc">
+                        From intimate ceremonies to large-scale celebrations, Kature Decorators delivers end-to-end event design with meticulous attention to detail and flawless execution.
+                    </p>
+                    <div class="about__stats">
+                        <div class="stat">
+                            <span class="stat__number text-gold" data-i18n="about.stat1_number">500+</span>
+                            <span class="stat__label" data-i18n="about.stat1_label">Events Completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number text-gold" data-i18n="about.stat2_number">55+</span>
+                            <span class="stat__label" data-i18n="about.stat2_label">Years Of Legacy</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number text-gold" data-i18n="about.stat3_number">300k+</span>
+                            <span class="stat__label" data-i18n="about.stat3_label">Guests Welcomed</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about__visual reveal" style="--reveal-delay: 0.2s;">
+                    <div class="about__image-frame">
+                        <img src="images/kature-02.jpg" alt="Lavish event hall with chandeliers and luxury seating" loading="lazy">
+                        <div class="about__image-accent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services section">
+        <div class="container">
+            <p class="section-eyebrow reveal" data-i18n="services.eyebrow">What We Do</p>
+            <h2 class="section-heading reveal" data-i18n="services.heading">Services shaped for premium events</h2>
+            <div class="services__highlights reveal">
+                <span data-i18n="services.tag1">Arrival design</span>
+                <span data-i18n="services.tag2">Mandap and stage styling</span>
+                <span data-i18n="services.tag3">Guest flow planning</span>
+                <span data-i18n="services.tag4">Theme translation</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq section">
+        <div class="container">
+            <p class="section-eyebrow reveal" data-i18n="faq.eyebrow">Client Questions</p>
+            <h2 class="section-heading reveal" data-i18n="faq.heading">Frequently asked before booking</h2>
+            <div class="faq__grid">
+                <div class="faq__item reveal">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q1.question">What types of events does Kature cater to?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.q1.answer">We specialize in luxury weddings, social celebrations, corporate events, exhibitions, outdoor functions, and large-scale guest experiences. Our infrastructure supports events from 200 to 5,000+ guests.</p>
+                    </div>
+                </div>
+                <div class="faq__item reveal" style="--reveal-delay: 0.05s;">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q2.question">Can Kature handle both decor and on-ground setup?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.q2.answer">Yes. Kature can be presented as a single partner for decor styling, decor execution, structural setup, and venue transformation, which is a strong advantage for clients managing high-value events.</p>
+                    </div>
+                </div>
+                <div class="faq__item reveal" style="--reveal-delay: 0.1s;">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q3.question">How far in advance should clients book?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.q3.answer">For weddings and high-detail events, booking 3 to 6 months in advance is ideal. For corporate and infrastructure-led events, 4 to 8 weeks is typically sufficient.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="contact__info reveal">
+                <p class="section-eyebrow" data-i18n="contact.eyebrow">Get In Touch</p>
+                <h2 class="section-heading" data-i18n="contact.heading">Let's shape your next celebration</h2>
+                <p class="contact__desc" data-i18n="contact.desc">Share your event type, date, venue, and scale. Our team will help shape a decor and infrastructure approach that feels aligned with your celebration and guest experience goals.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__bottom">
+                <p data-i18n="footer.copyright">&copy; 2026 Kature Decorators. All rights reserved.</p>
+                <p data-i18n="footer.trust_line">Pune's most trusted wedding decorators for 30+ years.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="scrape.js"></script>
+</body>
+
+</html>
