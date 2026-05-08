@@ -32,6 +32,16 @@ function writeLangFile(lang, data) {
     fs.writeFileSync(path.join(LANG_DIR, `${lang}.json`), JSON.stringify(data, null, 2), 'utf-8');
 }
 
+// Serve language JSON files
+app.get('/api/lang', (req, res) => {
+    const { lang } = req.query;
+    if (!lang) return res.status(400).json({ error: 'Missing lang parameter' });
+
+    const data = readLangFile(lang);
+    res.setHeader('Cache-Control', 'no-cache');
+    res.json(data);
+});
+
 // Diff incoming texts against existing en.json
 app.post('/api/diff', (req, res) => {
     const { texts } = req.body;

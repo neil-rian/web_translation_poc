@@ -3,7 +3,9 @@
    Client-side translation using JSON language files.
    Keys in the JSON are CSS selector paths. The engine queries
    the DOM with each key and swaps content accordingly.
-   All languages (including English) load from their JSON file.
+   English skips loading on initial page load (DOM is already
+   English). en.json is only applied when restoring from another
+   language.
    ============================================================ */
 
 const I18n = (() => {
@@ -20,6 +22,7 @@ const I18n = (() => {
     let currentLang = 'en';
     let currentDict = {};
     let originalTitle = '';
+    let translated = false; // tracks if a non-English language was applied
 
     function detectLanguage() {
         // 1. URL param ?lang=
@@ -43,13 +46,13 @@ const I18n = (() => {
         if (cache[lang]) return cache[lang];
 
         try {
-            const response = await fetch(`lang/${lang}.json`);
+            const response = await fetch(`/api/lang?lang=${lang}`);
             if (!response.ok) return {};
             const data = await response.json();
             cache[lang] = data;
             return data;
         } catch (e) {
-            return {}; // file may not exist yet on first load
+            return {};
         }
     }
 
@@ -57,14 +60,13 @@ const I18n = (() => {
         currentDict = dict;
 
         for (const key of Object.keys(dict)) {
-            // Handle meta keys separately
             if (key.startsWith('meta.')) continue;
 
             let el;
             try {
                 el = document.querySelector(key);
             } catch (e) {
-                continue; // invalid selector — skip
+                continue;
             }
             if (!el) continue;
 
@@ -78,7 +80,6 @@ const I18n = (() => {
             }
         }
 
-        // Update <html lang> and <title>
         document.documentElement.lang = currentLang;
         if (dict['meta.title']) {
             document.title = dict['meta.title'];
@@ -99,11 +100,19 @@ const I18n = (() => {
         currentLang = lang;
         localStorage.setItem(STORAGE_KEY, lang);
 
+        if (lang === 'en' && !translated) {
+            // Page source is already English — no need to fetch or apply
+            updateSwitcher();
+            document.documentElement.lang = 'en';
+            window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang, dict: {} } }));
+            return;
+        }
+
         const dict = await loadLanguage(lang);
         applyTranslations(dict);
+        if (lang !== 'en') translated = true;
         updateSwitcher();
 
-        // Dispatch event so other scripts can react
         window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang, dict } }));
     }
 
@@ -120,7 +129,6 @@ const I18n = (() => {
         const lang = detectLanguage();
         await setLanguage(lang);
 
-        // Bind switcher
         const switcher = document.getElementById('langSwitcher');
         if (switcher) {
             switcher.addEventListener('change', (e) => {
@@ -136,7 +144,6 @@ const I18n = (() => {
     return { init, setLanguage, t, getCurrentLang, clearCache, SUPPORTED_LANGS, LANG_LABELS };
 })();
 
-// Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     I18n.init();
 });
