@@ -1,0 +1,162 @@
+require('dotenv').config();
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+
+const app = express();
+const PORT = 3000;
+const LANG_DIR = path.join(__dirname, 'lang');
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+
+const LANG_NAMES = {
+    hi: 'Hindi',
+    mr: 'Marathi',
+    bn: 'Bengali',
+    ta: 'Tamil'
+};
+
+app.use(express.static(__dirname));
+app.use(express.json({ limit: '2mb' }));
+
+// Helper: read JSON file or return empty object
+function readLangFile(lang) {
+    const filePath = path.join(LANG_DIR, `${lang}.json`);
+    if (fs.existsSync(filePath)) {
+        return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    }
+    return {};
+}
+
+// Helper: write JSON file
+function writeLangFile(lang, data) {
+    fs.writeFileSync(path.join(LANG_DIR, `${lang}.json`), JSON.stringify(data, null, 2), 'utf-8');
+}
+
+// Diff incoming texts against existing en.json
+app.post('/api/diff', (req, res) => {
+    const { texts } = req.body;
+    if (!texts) return res.status(400).json({ error: 'Missing texts' });
+
+    const existing = readLangFile('en');
+    const changed = {};
+    const removed = {};
+
+    // Keys that are new or have different values
+    for (const key of Object.keys(texts)) {
+        if (existing[key] === undefined || existing[key] !== texts[key]) {
+            changed[key] = texts[key];
+        }
+    }
+
+    // Keys in en.json that are not in incoming texts
+    for (const key of Object.keys(existing)) {
+        if (texts[key] === undefined) {
+            removed[key] = existing[key];
+        }
+    }
+
+    res.json({
+        changed,
+        removed,
+        changedCount: Object.keys(changed).length,
+        removedCount: Object.keys(removed).length,
+        totalCurrent: Object.keys(texts).length,
+        totalExisting: Object.keys(existing).length
+    });
+});
+
+// Translate a set of key-value pairs to a target language using OpenAI GPT-4o-mini
+async function translateWithOpenAI(texts, targetLang) {
+    const langName = LANG_NAMES[targetLang] || targetLang;
+
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${OPENAI_API_KEY}`
+        },
+        body: JSON.stringify({
+            model: 'gpt-4o-mini',
+            temperature: 0.1,
+            response_format: { type: 'json_object' },
+            messages: [
+                {
+                    role: 'system',
+                    content: `You are a professional translator. Translate the JSON values from English to ${langName}. Return a JSON object with the exact same keys but translated values. Rules:
+- Preserve all HTML tags like <br>, <span class="text-gold"> exactly as-is
+- Keep proper nouns (company names, person names, city names) in English
+- Keep numbers like "500+", "55+", "300k+" as-is
+- Translate naturally, not literally
+- Return ONLY valid JSON, nothing else`
+                },
+                {
+                    role: 'user',
+                    content: JSON.stringify(texts)
+                }
+            ]
+        })
+    });
+
+    const data = await response.json();
+
+    if (data.error) {
+        throw new Error(`OpenAI API error: ${data.error.message}`);
+    }
+
+    return JSON.parse(data.choices[0].message.content);
+}
+
+// Save updated English source (merge with existing to preserve other pages' keys)
+app.post('/api/save-source', (req, res) => {
+    const { texts } = req.body;
+    if (!texts) return res.status(400).json({ error: 'Missing texts' });
+
+    const existing = readLangFile('en');
+    const merged = { ...existing, ...texts };
+    writeLangFile('en', merged);
+    console.log(`Saved en.json (${Object.keys(texts).length} new/updated, ${Object.keys(merged).length} total)`);
+    res.json({ success: true, keys: Object.keys(merged).length });
+});
+
+// Translate changed keys to all target languages
+app.post('/api/translate', async (req, res) => {
+    const { texts, targetLangs } = req.body;
+
+    if (!texts || !targetLangs) {
+        return res.status(400).json({ error: 'Missing texts or targetLangs' });
+    }
+
+    if (!OPENAI_API_KEY || OPENAI_API_KEY === 'your_api_key_here') {
+        return res.status(500).json({ error: 'OpenAI API key not configured. Add OPENAI_API_KEY to .env file.' });
+    }
+
+    const keys = Object.keys(texts);
+    console.log(`Translating ${keys.length} key(s) to ${targetLangs.join(', ')} via GPT-4o-mini...`);
+
+    // Translate to all languages in parallel
+    const results = await Promise.all(
+        targetLangs.map(async (lang) => {
+            try {
+                const translated = await translateWithOpenAI(texts, lang);
+
+                // Merge into existing language file
+                const existing = readLangFile(lang);
+                const merged = { ...existing, ...translated };
+                writeLangFile(lang, merged);
+
+                console.log(`  ${lang}: ${keys.length} keys translated, ${Object.keys(merged).length} total`);
+                return { lang, success: true, newKeys: keys.length, totalKeys: Object.keys(merged).length };
+            } catch (err) {
+                console.error(`  ${lang}: Error — ${err.message}`);
+                return { lang, success: false, error: err.message };
+            }
+        })
+    );
+
+    res.json({ success: true, results });
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Open http://localhost:${PORT}/test.html`);
+});
