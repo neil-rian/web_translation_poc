@@ -21,44 +21,55 @@ function readStaticFile(lang) {
 }
 
 async function readLangFile(lang) {
-    if (USE_BLOB) {
-        try {
-            const { blobs } = await list({ prefix: `lang/${lang}.json` });
-            if (blobs.length > 0) {
-                const response = await fetch(blobs[0].url);
-                return await response.json();
-            }
-        } catch (err) {
-            console.error(`[storage] Blob read failed for ${lang}:`, err.message);
-        }
-        // Fall back to static committed file
-        return readStaticFile(lang);
-    }
-
-    // Local dev: try /tmp first, then static
+    // Always check /tmp first (fast, catches writes from same container)
     const tmpPath = path.join(TMP_DIR, `${lang}.json`);
     if (fs.existsSync(tmpPath)) {
         return JSON.parse(fs.readFileSync(tmpPath, 'utf-8'));
     }
+
+    // In production, try Vercel Blob
+    if (USE_BLOB) {
+        try {
+            const { blobs } = await list({ prefix: `lang/${lang}.json`, limit: 1 });
+            if (blobs.length > 0) {
+                const response = await fetch(blobs[0].url);
+                if (response.ok) {
+                    const data = await response.json();
+                    // Cache to /tmp for faster subsequent reads
+                    ensureTmpDir();
+                    fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2), 'utf-8');
+                    return data;
+                }
+            }
+        } catch (err) {
+            console.error(`[storage] Blob read failed for ${lang}:`, err.message);
+        }
+    }
+
+    // Fall back to static committed file
     return readStaticFile(lang);
 }
 
 async function writeLangFile(lang, data) {
     const json = JSON.stringify(data, null, 2);
 
-    if (USE_BLOB) {
-        await put(`lang/${lang}.json`, json, {
-            access: 'public',
-            addRandomSuffix: false,
-            contentType: 'application/json'
-        });
-        return;
-    }
-
-    // Local dev: write to /tmp
+    // Always write to /tmp for fast reads within same container
     ensureTmpDir();
     const tmpPath = path.join(TMP_DIR, `${lang}.json`);
     fs.writeFileSync(tmpPath, json, 'utf-8');
+
+    // In production, also persist to Vercel Blob
+    if (USE_BLOB) {
+        try {
+            await put(`lang/${lang}.json`, json, {
+                access: 'public',
+                addRandomSuffix: false,
+                contentType: 'application/json'
+            });
+        } catch (err) {
+            console.error(`[storage] Blob write failed for ${lang}:`, err.message);
+        }
+    }
 }
 
 module.exports = { readLangFile, writeLangFile };
