@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
     try {
         const { blobs } = await list({ prefix: 'test/hello.json', limit: 1 });
         if (blobs.length > 0) {
-            const blob = await get(blobs[0].url);
+            const blob = await get(blobs[0].url, { access: 'private' });
             const text = await blob.text();
             results.read = { success: true, body: JSON.parse(text) };
         } else {

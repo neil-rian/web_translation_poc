@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { put, list, getDownloadUrl } = require('@vercel/blob');
+const { put, list, get } = require('@vercel/blob');
 
 const STATIC_DIR = path.join(process.cwd(), 'lang');
 const TMP_DIR = '/tmp/lang';
@@ -32,16 +32,13 @@ async function readLangFile(lang) {
         try {
             const { blobs } = await list({ prefix: `lang/${lang}.json`, limit: 1 });
             if (blobs.length > 0) {
-                // Private blobs need a signed download URL
-                const signedUrl = await getDownloadUrl(blobs[0].url);
-                const response = await fetch(signedUrl);
-                if (response.ok) {
-                    const data = await response.json();
-                    // Cache to /tmp for faster subsequent reads
-                    ensureTmpDir();
-                    fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2), 'utf-8');
-                    return data;
-                }
+                const blob = await get(blobs[0].url, { access: 'private' });
+                const text = await blob.text();
+                const data = JSON.parse(text);
+                // Cache to /tmp for faster subsequent reads
+                ensureTmpDir();
+                fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2), 'utf-8');
+                return data;
             }
         } catch (err) {
             console.error(`[storage] Blob read failed for ${lang}:`, err.message);
