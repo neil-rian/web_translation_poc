@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     // Test write
     try {
         const blob = await put('test/hello.json', JSON.stringify({ hello: 'world' }), {
-            access: 'public',
+            access: 'private',
             addRandomSuffix: false,
             contentType: 'application/json'
         });

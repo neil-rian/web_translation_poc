@@ -32,7 +32,9 @@ async function readLangFile(lang) {
         try {
             const { blobs } = await list({ prefix: `lang/${lang}.json`, limit: 1 });
             if (blobs.length > 0) {
-                const response = await fetch(blobs[0].url);
+                // For private blobs, use downloadUrl which includes a temp auth token
+                const downloadUrl = blobs[0].downloadUrl;
+                const response = await fetch(downloadUrl);
                 if (response.ok) {
                     const data = await response.json();
                     // Cache to /tmp for faster subsequent reads
@@ -62,7 +64,7 @@ async function writeLangFile(lang, data) {
     if (USE_BLOB) {
         try {
             await put(`lang/${lang}.json`, json, {
-                access: 'public',
+                access: 'private',
                 addRandomSuffix: false,
                 contentType: 'application/json'
             });
