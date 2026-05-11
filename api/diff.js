@@ -1,12 +1,12 @@
 const { readLangFile } = require('./_storage');
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
     const { texts } = req.body;
     if (!texts) return res.status(400).json({ error: 'Missing texts' });
 
-    const existing = readLangFile('en');
+    const existing = await readLangFile('en');
     const changed = {};
     const removed = {};
 

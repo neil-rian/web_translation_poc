@@ -68,9 +68,9 @@ module.exports = async (req, res) => {
         targetLangs.map(async (lang) => {
             try {
                 const translated = await translateWithOpenAI(texts, lang);
-                const existing = readLangFile(lang);
+                const existing = await readLangFile(lang);
                 const merged = { ...existing, ...translated };
-                writeLangFile(lang, merged);
+                await writeLangFile(lang, merged);
 
                 console.log(`  ${lang}: ${keys.length} keys translated, ${Object.keys(merged).length} total`);
                 return { lang, success: true, newKeys: keys.length, totalKeys: Object.keys(merged).length };
