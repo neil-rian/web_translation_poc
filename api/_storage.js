@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { put, list } = require('@vercel/blob');
+const { put, list, getDownloadUrl } = require('@vercel/blob');
 
 const STATIC_DIR = path.join(process.cwd(), 'lang');
 const TMP_DIR = '/tmp/lang';
@@ -32,9 +32,9 @@ async function readLangFile(lang) {
         try {
             const { blobs } = await list({ prefix: `lang/${lang}.json`, limit: 1 });
             if (blobs.length > 0) {
-                // For private blobs, use downloadUrl which includes a temp auth token
-                const downloadUrl = blobs[0].downloadUrl;
-                const response = await fetch(downloadUrl);
+                // Private blobs need a signed download URL
+                const signedUrl = await getDownloadUrl(blobs[0].url);
+                const response = await fetch(signedUrl);
                 if (response.ok) {
                     const data = await response.json();
                     // Cache to /tmp for faster subsequent reads
@@ -66,6 +66,7 @@ async function writeLangFile(lang, data) {
             await put(`lang/${lang}.json`, json, {
                 access: 'private',
                 addRandomSuffix: false,
+                allowOverwrite: true,
                 contentType: 'application/json'
             });
         } catch (err) {

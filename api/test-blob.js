@@ -1,4 +1,4 @@
-const { put, list } = require('@vercel/blob');
+const { put, list, getDownloadUrl } = require('@vercel/blob');
 
 module.exports = async (req, res) => {
     const results = {};
@@ -8,42 +8,27 @@ module.exports = async (req, res) => {
         const blob = await put('test/hello.json', JSON.stringify({ hello: 'world' }), {
             access: 'private',
             addRandomSuffix: false,
+            allowOverwrite: true,
             contentType: 'application/json'
         });
-        results.write = { success: true, url: blob.url, blobKeys: Object.keys(blob) };
+        results.write = { success: true, url: blob.url };
     } catch (err) {
         results.write = { success: false, error: err.message };
     }
 
-    // Test list
+    // Test list + read
     try {
         const { blobs } = await list({ prefix: 'test/hello.json', limit: 1 });
         if (blobs.length > 0) {
-            const blob = blobs[0];
-            results.list = { success: true, blobKeys: Object.keys(blob), url: blob.url, downloadUrl: blob.downloadUrl };
-
-            // Test read via url
-            try {
-                const r1 = await fetch(blob.url);
-                results.readViaUrl = { status: r1.status, ok: r1.ok };
-            } catch (err) {
-                results.readViaUrl = { error: err.message };
-            }
-
-            // Test read via downloadUrl
-            if (blob.downloadUrl) {
-                try {
-                    const r2 = await fetch(blob.downloadUrl);
-                    results.readViaDownloadUrl = { status: r2.status, ok: r2.ok, body: await r2.text() };
-                } catch (err) {
-                    results.readViaDownloadUrl = { error: err.message };
-                }
-            }
+            const signedUrl = await getDownloadUrl(blobs[0].url);
+            const response = await fetch(signedUrl);
+            const body = await response.json();
+            results.read = { success: true, status: response.status, body };
         } else {
-            results.list = { success: true, count: 0 };
+            results.read = { success: false, reason: 'no blobs found' };
         }
     } catch (err) {
-        results.list = { success: false, error: err.message };
+        results.read = { success: false, error: err.message };
     }
 
     res.json(results);
