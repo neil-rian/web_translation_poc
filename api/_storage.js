@@ -32,8 +32,9 @@ async function readLangFile(lang) {
         try {
             const { blobs } = await list({ prefix: `lang/${lang}.json`, limit: 1 });
             if (blobs.length > 0) {
-                const blob = await get(blobs[0].url, { access: 'private' });
-                const text = await blob.text();
+                const result = await get(blobs[0].url, { access: 'private' });
+                // get() returns { stream, blob } — read from the blob (a Web API Blob)
+                const text = await result.blob.text();
                 const data = JSON.parse(text);
                 // Cache to /tmp for faster subsequent reads
                 ensureTmpDir();

@@ -11,19 +11,18 @@ module.exports = async (req, res) => {
             allowOverwrite: true,
             contentType: 'application/json'
         });
-        results.write = { success: true, url: blob.url };
+        results.write = { success: true };
     } catch (err) {
         results.write = { success: false, error: err.message };
     }
 
-    // Test read via get()
+    // Test read
     try {
         const { blobs } = await list({ prefix: 'test/hello.json', limit: 1 });
         if (blobs.length > 0) {
-            const blob = await get(blobs[0].url, { access: 'private' });
-            results.read = { success: true, type: typeof blob, keys: Object.keys(blob), hasBody: !!blob.body, constructor: blob.constructor?.name };
-        } else {
-            results.read = { success: false, reason: 'no blobs found' };
+            const result = await get(blobs[0].url, { access: 'private' });
+            const text = await result.blob.text();
+            results.read = { success: true, body: JSON.parse(text) };
         }
     } catch (err) {
         results.read = { success: false, error: err.message };
