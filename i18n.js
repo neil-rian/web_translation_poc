@@ -100,7 +100,12 @@ const I18n = (() => {
         currentLang = lang;
         localStorage.setItem(STORAGE_KEY, lang);
 
-        if (lang === 'en' && !translated) {
+        if (lang === 'en') {
+            if (translated) {
+                // Reload to restore original English HTML instead of applying stale en.json
+                window.location.reload();
+                return;
+            }
             // Page source is already English — no need to fetch or apply
             updateSwitcher();
             document.documentElement.lang = 'en';
@@ -110,7 +115,7 @@ const I18n = (() => {
 
         const dict = await loadLanguage(lang);
         applyTranslations(dict);
-        if (lang !== 'en') translated = true;
+        translated = true;
         updateSwitcher();
 
         window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang, dict } }));
