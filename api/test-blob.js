@@ -21,8 +21,7 @@ module.exports = async (req, res) => {
         const { blobs } = await list({ prefix: 'test/hello.json', limit: 1 });
         if (blobs.length > 0) {
             const blob = await get(blobs[0].url, { access: 'private' });
-            const text = await blob.text();
-            results.read = { success: true, body: JSON.parse(text) };
+            results.read = { success: true, type: typeof blob, keys: Object.keys(blob), hasBody: !!blob.body, constructor: blob.constructor?.name };
         } else {
             results.read = { success: false, reason: 'no blobs found' };
         }
