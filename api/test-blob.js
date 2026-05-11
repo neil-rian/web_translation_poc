@@ -1,4 +1,4 @@
-const { put, list, getDownloadUrl } = require('@vercel/blob');
+const { put, list, get } = require('@vercel/blob');
 
 module.exports = async (req, res) => {
     const results = {};
@@ -16,14 +16,13 @@ module.exports = async (req, res) => {
         results.write = { success: false, error: err.message };
     }
 
-    // Test list + read
+    // Test read via get()
     try {
         const { blobs } = await list({ prefix: 'test/hello.json', limit: 1 });
         if (blobs.length > 0) {
-            const signedUrl = await getDownloadUrl(blobs[0].url);
-            const response = await fetch(signedUrl);
-            const body = await response.json();
-            results.read = { success: true, status: response.status, body };
+            const blob = await get(blobs[0].url);
+            const text = await blob.text();
+            results.read = { success: true, body: JSON.parse(text) };
         } else {
             results.read = { success: false, reason: 'no blobs found' };
         }
