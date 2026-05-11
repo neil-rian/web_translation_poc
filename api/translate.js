@@ -73,7 +73,7 @@ module.exports = async (req, res) => {
                 await writeLangFile(lang, merged);
 
                 console.log(`  ${lang}: ${keys.length} keys translated, ${Object.keys(merged).length} total`);
-                return { lang, success: true, newKeys: keys.length, totalKeys: Object.keys(merged).length };
+                return { lang, success: true, newKeys: keys.length, totalKeys: Object.keys(merged).length, translations: merged };
             } catch (err) {
                 console.error(`  ${lang}: Error — ${err.message}`);
                 return { lang, success: false, error: err.message };

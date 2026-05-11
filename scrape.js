@@ -238,10 +238,13 @@ const Scraper = (() => {
             const successCount = data.results.filter(r => r.success).length;
             showToast(`${diff.changedCount} key(s) translated to ${successCount} language(s)`);
 
-            // Refresh current language to pick up new translations
+            // Inject translations directly into i18n cache
             if (typeof I18n !== 'undefined') {
-                I18n.clearCache();
-                I18n.setLanguage(I18n.getCurrentLang());
+                for (const result of data.results) {
+                    if (result.success && result.translations) {
+                        I18n.setCache(result.lang, result.translations);
+                    }
+                }
             }
         } catch (err) {
             console.error('[Scraper] Auto-scan failed:', err.message);
@@ -292,10 +295,6 @@ const Scraper = (() => {
         modal.closeBtn.addEventListener('click', () => {
             modal.overlay.classList.remove('active');
             setTimeout(() => modal.overlay.remove(), 300);
-            if (typeof I18n !== 'undefined') {
-                I18n.clearCache();
-                I18n.setLanguage(I18n.getCurrentLang());
-            }
         });
     }
 
@@ -374,6 +373,9 @@ const Scraper = (() => {
                 const name = LANG_NAMES[result.lang] || result.lang;
                 if (result.success) {
                     addLog(modal.log, `${name} — ${result.newKeys} key(s) translated, ${result.totalKeys} total in file.`, 'success');
+                    if (typeof I18n !== 'undefined' && result.translations) {
+                        I18n.setCache(result.lang, result.translations);
+                    }
                 } else {
                     addLog(modal.log, `${name} — Failed: ${result.error}`, 'error');
                 }

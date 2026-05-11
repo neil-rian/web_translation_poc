@@ -19,26 +19,23 @@ const I18n = (() => {
     };
     const STORAGE_KEY = 'kature-lang';
     const cache = {};
+    const originalTexts = {}; // stores original English DOM content
     let currentLang = 'en';
     let currentDict = {};
     let originalTitle = '';
-    let translated = false; // tracks if a non-English language was applied
+    let translated = false;
 
     function detectLanguage() {
-        // 1. URL param ?lang=
         const urlParams = new URLSearchParams(window.location.search);
         const urlLang = urlParams.get('lang');
         if (urlLang && SUPPORTED_LANGS.includes(urlLang)) return urlLang;
 
-        // 2. localStorage
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored && SUPPORTED_LANGS.includes(stored)) return stored;
 
-        // 3. Browser language
         const browserLang = navigator.language.split('-')[0];
         if (SUPPORTED_LANGS.includes(browserLang)) return browserLang;
 
-        // 4. Default
         return 'en';
     }
 
@@ -56,8 +53,29 @@ const I18n = (() => {
         }
     }
 
+    function saveOriginalTexts(dict) {
+        for (const key of Object.keys(dict)) {
+            if (key.startsWith('meta.') || originalTexts[key]) continue;
+            let el;
+            try { el = document.querySelector(key); } catch (e) { continue; }
+            if (!el) continue;
+            originalTexts[key] = el.innerHTML;
+        }
+    }
+
+    function restoreOriginalTexts() {
+        for (const key of Object.keys(originalTexts)) {
+            let el;
+            try { el = document.querySelector(key); } catch (e) { continue; }
+            if (!el) continue;
+            el.innerHTML = originalTexts[key];
+        }
+    }
+
     function applyTranslations(dict) {
         currentDict = dict;
+        // Save original English text before first translation
+        if (!translated) saveOriginalTexts(dict);
 
         for (const key of Object.keys(dict)) {
             if (key.startsWith('meta.')) continue;
@@ -102,13 +120,12 @@ const I18n = (() => {
 
         if (lang === 'en') {
             if (translated) {
-                // Reload to restore original English HTML instead of applying stale en.json
-                window.location.reload();
-                return;
+                restoreOriginalTexts();
+                translated = false;
             }
-            // Page source is already English — no need to fetch or apply
             updateSwitcher();
             document.documentElement.lang = 'en';
+            document.title = originalTitle;
             window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang, dict: {} } }));
             return;
         }
@@ -119,6 +136,10 @@ const I18n = (() => {
         updateSwitcher();
 
         window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang, dict } }));
+    }
+
+    function setCache(lang, data) {
+        cache[lang] = data;
     }
 
     function t(key) {
@@ -146,7 +167,7 @@ const I18n = (() => {
         Object.keys(cache).forEach(k => delete cache[k]);
     }
 
-    return { init, setLanguage, t, getCurrentLang, clearCache, SUPPORTED_LANGS, LANG_LABELS };
+    return { init, setLanguage, setCache, t, getCurrentLang, clearCache, SUPPORTED_LANGS, LANG_LABELS };
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
